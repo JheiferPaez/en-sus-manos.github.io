@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">En Sus Manos</title>
+  <defs>
+    <linearGradient id="left" x1="16" y1="22" x2="66" y2="101" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14b8bd"/>
+      <stop offset="1" stop-color="#078796"/>
+    </linearGradient>
+    <linearGradient id="right" x1="104" y1="22" x2="54" y2="101" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#86c9f2"/>
+      <stop offset="1" stop-color="#3b9ed8"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="57" fill="#eef8fd"/>
+  <path d="M55 36C45 20 24 23 18 39 9 62 28 88 54 102" fill="none" stroke="url(#left)" stroke-width="11" stroke-linecap="round"/>
+  <path d="M42 52C30 61 35 80 54 92" fill="none" stroke="#12a5ad" stroke-width="8" stroke-linecap="round"/>
+  <path d="M65 36c10-16 31-13 37 3 9 23-10 49-36 63" fill="none" stroke="url(#right)" stroke-width="11" stroke-linecap="round"/>
+  <path d="M78 52c12 9 7 28-12 40" fill="none" stroke="#62b5e7" stroke-width="8" stroke-linecap="round"/>
+  <path d="M60 72S43 62 43 50c0-7 5-12 12-12 3 0 6 2 8 5 2-3 5-5 9-5 7 0 12 5 12 12 0 12-24 22-24 22Z" fill="#f2635b"/>
+</svg>

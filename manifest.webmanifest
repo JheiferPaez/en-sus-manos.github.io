@@ -1,0 +1,16 @@
+{
+  "name": "En Sus Manos",
+  "short_name": "En Sus Manos",
+  "description": "Herramienta educativa para cuidadores de niños con leucemia linfoblástica aguda.",
+  "lang": "es-CO",
+  "start_url": "./#/bienvenida",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5fbfe",
+  "theme_color": "#087ca7",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
