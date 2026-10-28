@@ -9,11 +9,11 @@ Descomprímalo y confirme que `index.html` está junto a `assets`, `docs`, `sw.j
 Edite `assets/js/config.js` con un editor de texto. Puede agregar:
 
 - `susFormUrl`: enlace público de Microsoft Forms para la escala SUS.
-- `emergencyPhone`: teléfono autorizado para el botón de llamada.
-- `careTeamPhone`: teléfono del equipo, reservado para una ampliación futura.
-- `privacyUrl`: política de privacidad, si la institución publica una.
+- `emergencyPhone`: clave conservada por compatibilidad; el botón de llamada fue retirado.
+- `careTeamPhone`: clave reservada, sin acción en esta versión.
+- `privacyUrl`: clave reservada; esta versión no muestra un enlace con ese valor.
 
-Los valores vacíos son válidos y mantienen ocultas las acciones que dependen de ellos.
+Con `susFormUrl` vacío, la encuesta aparece pendiente de configuración y su botón permanece deshabilitado.
 
 ## 3. Cree el repositorio
 
@@ -61,11 +61,11 @@ Documentación oficial: <https://docs.github.com/en/pages/getting-started-with-g
 
 Abra la dirección publicada en una ventana privada y compruebe:
 
-- la bienvenida y los diez módulos;
+- la bienvenida y los once módulos;
 - el buscador y el glosario;
 - el semáforo de alarmas;
 - las imágenes y el logotipo;
-- el enlace SUS y el teléfono configurado;
+- el enlace SUS, cuando esté configurado, y las cinco hojas imprimibles;
 - la vista en teléfono y computador;
 - una segunda visita sin conexión después de cargar todo una vez.
 
@@ -94,4 +94,4 @@ La instalación depende del navegador y suele requerir HTTPS. El contenido sigue
 
 ### Sigue apareciendo una versión anterior
 
-Actualice `CACHE_NAME` en `sw.js`, espere el despliegue y haga una recarga completa. En casos de prueba, también puede borrar los datos del sitio desde el navegador.
+Actualice `CACHE_NAME` en `sw.js`, espere el despliegue y haga una recarga completa. Conserve los datos del sitio para mantener el progreso local. Esta entrega ya incluye una nueva clave de caché; no requiere borrar las marcas de lectura.

@@ -1,4 +1,4 @@
-const CACHE_NAME = "en-sus-manos-v1.0.1";
+const CACHE_NAME = "en-sus-manos-v1.1.0";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -19,7 +19,16 @@ const APP_SHELL = [
   "./assets/images/alimentacion-segura.webp",
   "./assets/images/lavado-manos.webp",
   "./assets/images/apoyo-cuidador.webp",
-  "./recursos/planificadores-imprimibles.html"
+  "./recursos/planificadores-imprimibles.html",
+  "./assets/images/trasplante-acompanamiento.webp",
+  "./assets/images/espacio-seguro-jugar.webp",
+  "./assets/images/cuidado-juguetes.webp",
+  "./assets/images/plan-vivo-lejos.webp",
+  "./recursos/plan-cuidados-trasplante.html",
+  "./recursos/plan-si-vivo-lejos.html",
+  "./recursos/planes.css",
+  "./assets/js/print.js",
+  "./404.html"
 ];
 
 self.addEventListener("install", (event) => {
@@ -29,7 +38,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+      .then((keys) => Promise.all(keys.filter((key) => key.startsWith("en-sus-manos-") && key !== CACHE_NAME).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });

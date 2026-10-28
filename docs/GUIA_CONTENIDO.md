@@ -13,11 +13,20 @@
 | 3. Cuidados en casa | Higiene, boca, piel, descanso, actividad, escuela y visitas | St. Jude, COG y orientaciones del equipo tratante |
 | 4. Medicamentos | Administración, horarios, registro, olvido, vómito y almacenamiento | St. Jude, COG, Cancer.Net |
 | 5. Alimentación segura | Manipulación, cocción, hidratación, apetito y suplementos | St. Jude, American Cancer Society, OMS |
-| 6. Prevención de infecciones | Manos, entorno, contactos, mascarillas, vacunas y fiebre | St. Jude, COG, SIOP, NCCN |
+| 6. Prevención de infecciones | Manos, entorno, juego seguro, cuidado de juguetes, contactos, mascarillas, vacunas y fiebre | St. Jude, COG, SIOP, NCCN |
 | 7. Efectos secundarios | Náuseas, vómito, intestino, mucositis, dolor, fatiga y sangrado | St. Jude, Cancer.Net, American Cancer Society |
-| 8. Signos de alarma | Fiebre, respiración, sangrado, convulsiones, dolor, vómito y orina | NCCN, COG, Guía Colombiana, St. Jude |
+| 8. Signos de alarma y de regreso al servicio de urgencias | Fiebre, respiración, sangrado, convulsiones, dolor, vómito, orina y planificación cuando se vive lejos | NCCN, COG, Guía Colombiana, St. Jude |
 | 9. Apoyo al cuidador | Sobrecarga, relevo, comunicación y apoyo psicosocial | OMS, American Cancer Society, St. Jude |
 | 10. Recursos útiles | Glosario, preguntas, fuentes, contactos y organización | St. Jude, COG, Cancer.Net |
+| 11. Trasplante de células madre hematopoyéticas | Tipos, evaluación, acondicionamiento, día 0, injerto, recuperación, cuidados, EICH, alarmas y plan individual | Documento «Correcciones ajustadas.docx» aportado por la autora; menciones bibliográficas por completar |
+
+## Cambios editoriales de v1.1.0
+
+La bienvenida, la advertencia educativa, los cambios de los módulos 1, 2, 6 y 8 y el nuevo módulo 11 proceden de «Correcciones ajustadas.docx». Se ajustaron redacción y estructura para los desplegables existentes; no se realizó una actualización independiente de la literatura clínica.
+
+Las cuatro ilustraciones nuevas son material educativo generado para esta aplicación. Sus textos explicativos son HTML editable; las imágenes no sustituyen las indicaciones del equipo. Se conservaron las cinco ilustraciones y el logotipo anteriores.
+
+El glosario incorpora TCMH, injerto/prendimiento y EICH. Las dos hojas nuevas reproducen los ocho espacios previstos en el documento y se completan en papel. La propuesta de campos digitales queda identificada en CONTENT_GAPS.md.
 
 ## Estructura pedagógica
 

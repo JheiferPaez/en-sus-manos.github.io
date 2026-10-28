@@ -4,6 +4,7 @@
   const content = window.APP_CONTENT;
   const config = window.APP_CONFIG;
   const searchIndex = window.AppSearch.buildIndex(content);
+  const glossaryEntries = [...content.glossary].sort((a, b) => a.term.localeCompare(b.term, "es"));
   const app = document.getElementById("app");
   let deferredInstallPrompt = null;
 
@@ -23,11 +24,11 @@
     }
   };
 
-  const safePhone = (value) => String(value || "").replace(/[^+0-9]/g, "");
 
   function icon(name, size = 24) {
     const common = `width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
     const paths = {
+      cells: '<circle cx="8" cy="9" r="5"/><circle cx="17" cy="16" r="5"/><circle cx="8" cy="9" r="1"/><circle cx="17" cy="16" r="1"/>',
       home: '<path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/>',
       book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5z"/>',
       search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
@@ -103,7 +104,7 @@
   function safetyNote(compact = false) {
     return `<aside class="safety-note ${compact ? "compact" : ""}" aria-label="Aviso importante">
       ${icon("info", 22)}
-      <div><strong>Información educativa</strong><p>Esta herramienta no reemplaza al equipo de salud. Ante cambios o dudas, siga sus indicaciones.</p></div>
+      <div><strong>Información educativa</strong><p>${escapeHtml(content.welcome.disclaimer)}</p></div>
     </aside>`;
   }
 
@@ -134,7 +135,7 @@
         <div class="welcome-copy">
           <p class="eyebrow">${escapeHtml(content.welcome.eyebrow)}</p>
           <h1>${escapeHtml(content.welcome.title)}</h1>
-          <p class="lead">${escapeHtml(content.welcome.text)}</p>
+          <div class="welcome-message">${(content.welcome.paragraphs || [content.welcome.text]).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
           <div class="welcome-actions">
             <a class="button primary" href="#/antes">Comenzar ${icon("chevron", 20)}</a>
             <a class="button ghost" href="#/inicio">Explorar módulos</a>
@@ -146,7 +147,7 @@
         </figure>
       </section>
       <section class="feature-row" aria-label="Características">
-        <article>${icon("book", 28)}<strong>10 módulos</strong><span>Lectura breve y ordenada</span></article>
+        <article>${icon("book", 28)}<strong>${content.modules.length} módulos</strong><span>Lectura breve y ordenada</span></article>
         <article>${icon("alert", 28)}<strong>Ruta de alarmas</strong><span>Siempre a un toque</span></article>
         <article>${icon("lock", 28)}<strong>Sin datos personales</strong><span>Progreso solo en su equipo</span></article>
       </section>
@@ -164,7 +165,7 @@
       </section>
       <section class="stack">
         <article class="info-card icon-card">${icon("book", 30)}<div><h2>Es un apoyo educativo</h2><p>${escapeHtml(content.welcome.disclaimer)}</p></div></article>
-        <article class="info-card icon-card">${icon("alert", 30)}<div><h2>Las alarmas no pueden esperar</h2><p>Una temperatura de 38 °C o más, dificultad para respirar, convulsiones o sangrado persistente requieren atención inmediata según la ruta de su institución.</p></div></article>
+        <article class="info-card icon-card">${icon("alert", 30)}<div><h2>Las alarmas no pueden esperar</h2><p>Una temperatura de 38 °C o más, dificultad para respirar, convulsiones o sangrado persistente requieren atención inmediata según la ruta de su institución.</p><p class="transplant-note">${escapeHtml(content.transplantNote)}</p></div></article>
         <article class="info-card icon-card">${icon("lock", 30)}<div><h2>No escriba datos personales</h2><p>Esta versión no solicita nombres, diagnósticos, documentos ni información clínica. Las marcas de progreso permanecen en este navegador.</p></div></article>
       </section>
       <label class="consent-check"><input id="understand-check" type="checkbox"><span>Entiendo que la herramienta no sustituye la atención profesional.</span></label>
@@ -179,7 +180,7 @@
     return `<a class="module-card tone-${module.tone}" href="#/modulo/${module.id}">
       <span class="module-number">${String(module.id).padStart(2, "0")}</span>
       <span class="module-icon">${icon(module.icon, 30)}</span>
-      <span class="module-text"><strong>${escapeHtml(module.title)}</strong><small>${escapeHtml(module.summary)}</small></span>
+      <span class="module-text"><strong>${escapeHtml(module.id === 8 ? "Signos de alarma" : module.title)}</strong><small>${escapeHtml(module.summary)}</small></span>
       <span class="module-status ${done ? "done" : ""}">${done ? icon("check", 14) : ""}${status}</span>
       <span class="module-chevron">${icon("chevron")}</span>
     </a>`;
@@ -209,25 +210,46 @@
     `);
   }
 
+  function resourceLinks(items = []) {
+    const safeItems = items.filter((item) => /^#\/modulo\/\d+$/.test(item.url) || /^recursos\/[a-z0-9-]+\.html$/.test(item.url));
+    if (!safeItems.length) return "";
+    return `<div class="related-links no-print">${safeItems.map((item) => `<a class="button secondary" href="${escapeHtml(item.url)}" ${item.url.startsWith("recursos/") ? 'target="_blank" rel="noopener"' : ""}>${icon(item.url.startsWith("recursos/") ? "print" : "book", 18)} ${escapeHtml(item.label)}</a>`).join("")}</div>`;
+  }
+
+  function renderSection(section, index) {
+    return `<details class="content-accordion" ${index === 0 ? "open" : ""}>
+      <summary><span>${index + 1}</span><strong>${escapeHtml(section.title)}</strong>${icon("chevron", 20)}</summary>
+      <div class="accordion-body">
+        ${section.text ? `<p>${escapeHtml(section.text)}</p>` : ""}
+        ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+        ${section.bullets ? list(section.bullets, "plain-list") : ""}
+        ${section.note ? `<aside class="inline-note">${icon("info", 19)}<span>${escapeHtml(section.note)}</span></aside>` : ""}
+        ${section.image ? `<figure class="section-illustration"><img src="${escapeHtml(section.image)}" alt="${escapeHtml(section.imageAlt)}" width="1536" height="1024" loading="lazy" decoding="async"></figure>` : ""}
+        ${resourceLinks(section.links)}
+      </div>
+    </details>`;
+  }
+
   function renderModule(route, id) {
     const lesson = content.modules.find((item) => item.id === id);
     if (!lesson) return renderNotFound(route);
     const state = window.AppStorage.visitModule(id);
     const checkedItems = new Set(state.checklist[id] || []);
     const isComplete = state.completedModules.includes(id);
-    const previous = content.modules.find((item) => item.id === id - 1);
-    const next = content.modules.find((item) => item.id === id + 1);
+    const position = content.modules.indexOf(lesson);
+    const previous = content.modules[position - 1];
+    const next = content.modules[position + 1];
 
     return shell(route, `
       <article class="module-page tone-${lesson.tone}">
         <a class="back-link no-print" href="#/modulos">${icon("back", 18)} Todos los módulos</a>
-        <header class="module-hero">
+        <header class="module-hero ${lesson.imageFit === "contain" ? "image-complete" : ""} ${lesson.image ? "" : "without-image"}">
           <div class="module-hero-copy">
             <span class="module-kicker">Módulo ${lesson.id} de ${content.modules.length}</span>
             <div class="module-title-row"><span class="module-icon large">${icon(lesson.icon, 38)}</span><h1>${escapeHtml(lesson.title)}</h1></div>
             <p>${escapeHtml(lesson.objective)}</p>
           </div>
-          ${lesson.image ? `<img src="${escapeHtml(lesson.image)}" alt="${escapeHtml(lesson.imageAlt)}" width="900" height="600">` : ""}
+          ${lesson.image ? `<img src="${escapeHtml(lesson.image)}" alt="${escapeHtml(lesson.imageAlt)}" width="${lesson.imageWidth || 900}" height="${lesson.imageHeight || 600}">` : ""}
         </header>
         <section class="content-card key-card">
           <h2>Ideas clave</h2>
@@ -235,10 +257,7 @@
         </section>
         <section class="accordion-list">
           <h2>Aprenda paso a paso</h2>
-          ${lesson.sections.map((section, index) => `<details class="content-accordion" ${index === 0 ? "open" : ""}>
-            <summary><span>${index + 1}</span><strong>${escapeHtml(section.title)}</strong>${icon("chevron", 20)}</summary>
-            <div class="accordion-body"><p>${escapeHtml(section.text)}</p>${section.bullets ? list(section.bullets, "plain-list") : ""}${section.note ? `<aside class="inline-note">${icon("info", 19)}<span>${escapeHtml(section.note)}</span></aside>` : ""}</div>
-          </details>`).join("")}
+          ${lesson.sections.map((section, index) => renderSection(section, index)).join("")}
         </section>
         <section class="action-grid">
           <article class="action-card do"><h2>${icon("check", 22)} Qué puede hacer</h2>${list(lesson.do, "plain-list")}</article>
@@ -247,7 +266,8 @@
         <section class="content-card consult-card">
           <h2>Cuándo consultar</h2>
           ${list(lesson.consult, "plain-list")}
-          ${lesson.id === 8 || lesson.id === 6 ? `<a class="button danger" href="#/alarmas">Abrir semáforo de alarmas ${icon("chevron", 19)}</a>` : ""}
+          ${lesson.consultNote ? `<p class="transplant-note">${escapeHtml(lesson.consultNote)}</p>` : ""}
+          ${lesson.id === 8 || lesson.id === 6 || lesson.id === 11 ? `<a class="button danger" href="#/alarmas">Abrir semáforo de alarmas ${icon("chevron", 19)}</a>` : ""}
         </section>
         <section class="content-card checklist-card">
           <div class="section-heading"><h2>Lista rápida</h2><span>Se guarda en este equipo</span></div>
@@ -272,7 +292,6 @@
   }
 
   function renderAlarms(route) {
-    const phone = safePhone(config.emergencyPhone);
     return shell(route, `
       <section class="page-heading alarm-heading">
         <p class="eyebrow">Ruta rápida</p>
@@ -281,18 +300,18 @@
       </section>
       <aside class="emergency-callout">
         ${icon("alert", 34)}
-        <div><strong>Temperatura de 38 °C o más</strong><p>Requiere atención inmediata. No espere a que aparezcan otros síntomas.</p></div>
+        <div><strong>Temperatura de 38 °C o más</strong><p>Requiere atención inmediata. No espere a que aparezcan otros síntomas.</p><p class="transplant-note">${escapeHtml(content.alarms.transplantNote)}</p></div>
       </aside>
       <div class="traffic-stack">${content.alarms.levels.map((level) => `<section class="traffic-card ${level.id}">
         <header><span class="traffic-light" aria-hidden="true"></span><div><p>${escapeHtml(level.label)}</p><h2>${level.id === "red" ? "Actúe ahora" : level.id === "yellow" ? "Pida orientación" : "Mantenga el cuidado"}</h2></div></header>
         ${list(level.items, "traffic-list")}
         <p class="traffic-action"><strong>Qué hacer:</strong> ${escapeHtml(level.action)}</p>
       </section>`).join("")}</div>
-      ${phone ? `<a class="button danger full no-print" href="tel:${phone}">${icon("phone", 20)} Llamar al número configurado</a>` : `<aside class="inline-note no-print">${icon("phone", 20)}<span>Configure el teléfono de su institución en <code>assets/js/config.js</code> antes de publicar.</span></aside>`}
       <section class="content-card prepare-card">
         <h2>Prepárese antes de necesitar la ruta</h2>
         ${list(["Guarde la dirección de urgencias.", "Defina cómo se transportará.", "Mantenga disponible el resumen clínico y la lista de medicamentos.", "Confirme con el equipo a qué teléfono debe llamar."], "plain-list")}
       </section>
+      <section class="content-card"><h2>Si vive lejos del hospital</h2><p>Ante un signo de alarma, no retrase la atención intentando realizar un viaje prolongado hasta el hospital tratante. Siga el plan de emergencia establecido por el equipo de hematología-oncología.</p>${resourceLinks([{label: "Planificar el regreso a urgencias", url: "#/modulo/8"}, {label: "Abrir mi plan si vivo lejos", url: content.carePlans[1].url}])}</section>
       <button class="print-button no-print" type="button" data-action="print">${icon("print", 18)} Imprimir el semáforo</button>
       ${safetyNote()}
     `);
@@ -357,7 +376,7 @@
       <section class="resource-section" id="glosario">
         <div class="section-heading"><div><p class="eyebrow">Palabras médicas</p><h2>Glosario</h2></div><span>${content.glossary.length} términos</span></div>
         <label class="resource-filter">${icon("search", 20)}<span class="sr-only">Filtrar glosario</span><input id="glossary-filter" type="search" placeholder="Filtrar términos" value="${escapeHtml(term)}"></label>
-        <div id="glossary-list" class="glossary-list">${content.glossary.map((entry) => glossaryEntry(entry, normalizedTerm && window.AppSearch.normalize(entry.term) === normalizedTerm)).join("")}</div>
+        <div id="glossary-list" class="glossary-list">${glossaryEntries.map((entry) => glossaryEntry(entry, normalizedTerm && window.AppSearch.normalize(entry.term) === normalizedTerm)).join("")}</div>
       </section>
       <section class="resource-section">
         <div class="section-heading"><div><p class="eyebrow">Dudas comunes</p><h2>Preguntas frecuentes</h2></div></div>
@@ -365,8 +384,9 @@
       </section>
       <section class="resource-section">
         <div class="section-heading"><div><p class="eyebrow">Para imprimir</p><h2>Planificadores de cuidado</h2></div></div>
-        <p class="section-intro">Tres hojas en blanco para completar a mano: ruta y contactos, plan semanal de medicamentos, y citas con preguntas.</p>
-        <a class="button secondary" href="recursos/planificadores-imprimibles.html" target="_blank" rel="noopener">${icon("print", 18)} Abrir planificadores imprimibles</a>
+        <p class="section-intro">Cinco hojas en blanco para completar a mano junto con el equipo: contactos, medicamentos, citas, cuidados después del trasplante y planificación si vive lejos.</p>
+        <a class="button secondary" href="recursos/planificadores-imprimibles.html" target="_blank" rel="noopener">${icon("print", 18)} Abrir los tres planificadores generales</a>
+        <div class="plan-grid">${content.carePlans.map((plan) => `<article class="content-card"><h3>${escapeHtml(plan.title)}</h3><p>${escapeHtml(plan.description)}</p>${resourceLinks([{label: "Abrir hoja para imprimir", url: plan.url}])}</article>`).join("")}</div>
       </section>
       <section class="resource-section">
         <div class="section-heading"><div><p class="eyebrow">Para ampliar</p><h2>Fuentes consultadas</h2></div></div>
@@ -377,7 +397,7 @@
         <p class="eyebrow">Evaluación del prototipo</p>
         <h2>Escala de Usabilidad del Sistema (SUS)</h2>
         <p>La encuesta SUS tiene 10 afirmaciones y permite evaluar la facilidad de uso. No está incluida dentro de esta aplicación para evitar recopilar datos personales en GitHub Pages.</p>
-        ${susUrl ? `<a class="button primary" href="${escapeHtml(susUrl)}" target="_blank" rel="noopener noreferrer">Abrir encuesta SUS ${icon("external", 18)}</a>` : `<aside class="inline-note">${icon("info", 20)}<span>El enlace a Microsoft Forms aún no está configurado. Agréguelo en <code>assets/js/config.js</code>.</span></aside>`}
+        ${susUrl ? `<a class="button primary" href="${escapeHtml(susUrl)}" target="_blank" rel="noopener noreferrer">Abrir encuesta SUS ${icon("external", 18)}</a>` : `<button class="button secondary" type="button" disabled>Encuesta pendiente de configuración</button><p>La evaluación de usabilidad estará disponible cuando se configure el formulario.</p>`}
         <details class="sus-reference"><summary>Ver los 10 ítems de referencia ${icon("chevron", 18)}</summary><ol>${content.sus.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><p>${escapeHtml(content.sus.scoring)}</p></details>
       </section>
       ${safetyNote(true)}
@@ -391,7 +411,7 @@
       <section class="completion-page">
         <div class="completion-mark">${icon("check", 54)}</div>
         <p class="eyebrow">Resumen de su recorrido</p>
-        <h1>${complete === total ? "Completó los diez módulos" : "Siga avanzando a su ritmo"}</h1>
+        <h1>${complete === total ? `Completó los ${total} módulos` : "Siga avanzando a su ritmo"}</h1>
         <p class="lead">Ha marcado ${complete} de ${total} módulos (${percentage}%). Puede volver cuando quiera; sus marcas permanecen en este navegador.</p>
         <div class="completion-actions">
           <a class="button primary" href="#/modulos">Revisar módulos</a>
@@ -493,7 +513,7 @@
     const term = window.AppSearch.normalize(target.value);
     const container = document.getElementById("glossary-list");
     if (!container) return;
-    const matches = content.glossary.filter((entry) => window.AppSearch.normalize(`${entry.term} ${entry.definition}`).includes(term));
+    const matches = glossaryEntries.filter((entry) => window.AppSearch.normalize(`${entry.term} ${entry.definition}`).includes(term));
     container.innerHTML = matches.length ? matches.map((entry) => glossaryEntry(entry, false)).join("") : '<div class="empty-state compact"><p>No hay términos que coincidan.</p></div>';
   });
 
@@ -567,6 +587,16 @@
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
   }
+
+  let detailsClosedBeforePrint = [];
+  window.addEventListener("beforeprint", () => {
+    detailsClosedBeforePrint = [...document.querySelectorAll("details:not([open])")];
+    detailsClosedBeforePrint.forEach((details) => { details.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    detailsClosedBeforePrint.forEach((details) => { details.open = false; });
+    detailsClosedBeforePrint = [];
+  });
 
   applyAppearance();
   window.AppRouter.start(render);

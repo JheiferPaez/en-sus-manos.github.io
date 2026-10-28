@@ -1,20 +1,20 @@
-# En Sus Manos
+# En Sus Manos · versión 1.1.0
 
 Herramienta educativa estática para padres y cuidadores de niños con leucemia linfoblástica aguda (LLA). Está preparada para funcionar en GitHub Pages o en cualquier servidor que entregue archivos HTML, CSS, JavaScript e imágenes.
 
 ## Qué incluye
 
-- Diez módulos educativos.
+- Once módulos educativos, incluido el nuevo módulo de trasplante de células madre hematopoyéticas.
 - Semáforo de signos de alarma accesible desde cualquier pantalla.
 - Buscador local de módulos, síntomas y términos.
 - Glosario y preguntas frecuentes.
 - Listas de verificación y progreso guardados en el navegador.
 - Preferencias de tamaño de texto y contraste.
 - Impresión de fichas y semáforo.
-- Tres planificadores imprimibles para contactos, medicamentos y citas.
+- Cinco hojas imprimibles: contactos, medicamentos, citas, cuidados después del trasplante y plan si vive lejos.
 - Aplicación web progresiva (PWA) con funcionamiento sin conexión después de la primera visita.
 - Acceso opcional a una encuesta SUS de Microsoft Forms.
-- Diseño adaptable a teléfonos, tabletas y computadores.
+- Diseño adaptable con paleta amarillo pastel, bienvenida actualizada y cuatro ilustraciones nuevas.
 
 No usa cuentas, cookies de analítica, base de datos ni servicios externos para funcionar. No debe usarse para registrar datos personales o clínicos.
 
@@ -34,16 +34,14 @@ Consulte [docs/GUIA_PUBLICACION_GITHUB_PAGES.md](docs/GUIA_PUBLICACION_GITHUB_PA
 Abra `assets/js/config.js` y edite únicamente los valores entre comillas:
 
 ```js
-susFormUrl: "https://forms.office.com/...",
-emergencyPhone: "+57...",
-careTeamPhone: "+57..."
+susFormUrl: "https://forms.office.com/..."
 ```
 
 - Si `susFormUrl` queda vacío, la aplicación muestra que la encuesta todavía no está configurada.
-- Si `emergencyPhone` queda vacío, no se muestra un botón de llamada. El semáforo continúa disponible.
+- El aviso de configuración telefónica y el botón de llamada se retiraron según las correcciones. Las claves `emergencyPhone` y `careTeamPhone` se mantienen por compatibilidad, pero no generan acciones en pantalla.
 - No coloque nombres, historias clínicas, contraseñas o tokens en este archivo: todo lo que se publica en GitHub Pages es visible.
 
-Después de cambiar archivos, actualice `version` en `config.js` y `CACHE_NAME` en `sw.js` para que los dispositivos descarguen la versión nueva.
+Esta entrega ya incorpora `version: "1.1.0"` y la caché `en-sus-manos-v1.1.0`. En próximas actualizaciones, después de cambiar archivos, actualice `version` en `config.js` y `CACHE_NAME` en `sw.js` para que los dispositivos descarguen la versión nueva.
 
 ## Probar en su computador
 
@@ -53,13 +51,15 @@ No abra `index.html` con doble clic si desea probar la instalación o el modo si
 python3 -m http.server 8080
 ```
 
-o:
-
-```bash
-npx serve .
-```
-
 Luego abra `http://localhost:8080`.
+
+## Actualizar la versión anterior
+
+Conserve una copia de v1.0.1 y reemplace el contenido de la carpeta publicada por los archivos de este ZIP, manteniendo la misma dirección del sitio. Si personalizó `config.js`, conserve sus valores al incorporar la nueva versión. No renombre los archivos ni las carpetas.
+
+Los identificadores 1–10, el orden de sus casillas y la clave `en-sus-manos:v1` permanecen iguales. Las marcas se conservan en el mismo navegador y origen; al añadir el módulo 11, un recorrido anterior completo pasa a mostrar 10 de 11. El traslado a otro dominio o navegador no transporta ese progreso. No borre los datos del sitio para actualizar.
+
+Las nuevas hojas se completan a mano. No se agregó captura ni almacenamiento de datos clínicos. Consulte [docs/CAMBIOS_V1.1.0.md](docs/CAMBIOS_V1.1.0.md) para ver el alcance exacto.
 
 ## Estructura
 

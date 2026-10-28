@@ -1,35 +1,24 @@
-# Pendientes antes de uso público o asistencial
+# Pendientes de contenido y configuración · v1.1.0
 
-Esta versión es funcional como prototipo de investigación. Antes de presentarla como una herramienta clínica validada, complete y documente estos puntos.
+La integración técnica está preparada como prototipo. Estos puntos no se completaron con datos supuestos y permanecen visibles para la responsable del contenido.
 
-## Bloqueantes
+## Documento de correcciones
 
-- **Validación clínica:** revisión formal del contenido por expertos en hemato-oncología pediátrica, enfermería, nutrición, psicología y seguridad del paciente.
-- **Ruta institucional:** confirmar el umbral de fiebre, teléfonos, dirección de urgencias, horario y pasos exactos con cada institución participante.
-- **Revisión normativa y ética:** definir responsable editorial, consentimiento, tratamiento de datos, propiedad intelectual y aprobación del comité correspondiente.
-- **Prueba con usuarios:** evaluar comprensión, navegación, accesibilidad y carga emocional con cuidadores reales; registrar cambios resultantes.
-- **Fuentes finales:** completar las referencias incompletas, confirmar vigencia y dejar fecha, versión y responsable de cada revisión.
+- **«EVITAR» en cuidado de juguetes:** el encabezado no trae contenido. No se añadió un bloque vacío ni se inventaron recomendaciones.
+- **Planes individuales:** los dos planes se entregan como hojas en blanco para imprimir. La propuesta de campos digitales no forma parte de esta integración; requiere definir qué información se captura y cómo debe conservarse. La aplicación sigue sin registrar datos personales o clínicos.
+- **Evaluación educativa:** no se aportó un cuestionario con preguntas, opciones y respuestas validadas. Se conservaron las listas de verificación y la escala SUS; no se inventó una evaluación clínica.
+- **Referencias del trasplante:** el documento menciona organizaciones y recomendaciones, pero se deben completar las referencias exactas, fechas y revisión editorial. No se verificó la bibliografía en línea durante esta integración.
+- **Umbral de fiebre:** el material anterior mantiene 38 °C y el contenido de trasplante remite al límite individual del equipo. Se añadió esa distinción en los puntos de consulta compartidos; falta la aprobación clínica e institucional del conjunto.
 
-## Configuración pendiente
+## Configuración
 
-- Pegar la URL definitiva de Microsoft Forms para la escala SUS en `assets/js/config.js`.
-- Agregar el teléfono institucional de urgencias o del equipo tratante, si existe autorización para publicarlo.
-- Sustituir la frase “pendiente de validación por expertos” cuando exista evidencia documental de la validación.
-- Definir si el prototipo será indexado por buscadores. Por seguridad, esta versión incluye `noindex` y bloquea rastreo en `robots.txt`.
+- `susFormUrl` continúa vacío en `assets/js/config.js`. La encuesta permanece deshabilitada hasta disponer del enlace definitivo.
+- `emergencyPhone` y `careTeamPhone` se mantienen como claves de compatibilidad, pero no producen un botón de llamada. No es necesario rellenarlas para usar esta versión.
+- El estado «pendiente de validación por expertos» se mantiene. Debe cambiarse únicamente cuando exista una revisión documentada.
+- Se conservan `noindex` y las restricciones de rastreo de la versión anterior. La decisión de indexación corresponde al proyecto.
 
-## Mejoras recomendadas para una siguiente versión
+## Validación pendiente del proyecto
 
-- Auditoría WCAG 2.2 con usuarios de tecnologías de apoyo.
-- Pruebas en equipos Android/iOS de gama baja y redes lentas.
-- Traducciones validadas para poblaciones que las requieran.
-- Material descargable revisado por la institución.
-- Proceso editorial con fecha de caducidad y alertas de revisión del contenido.
-- Métricas de uso solo si existe consentimiento, minimización de datos y aprobación ética.
+Se conserva la necesidad de revisión por los responsables clínicos, aprobación de las rutas institucionales, revisión de las referencias y pruebas de comprensión con cuidadores. La revisión técnica no equivale a validación médica.
 
-## Decisiones deliberadas de este prototipo
-
-- No hay inicio de sesión ni base de datos.
-- No se capturan nombres, diagnósticos, medicamentos, citas o teléfonos del paciente.
-- El progreso se guarda solo en `localStorage` del dispositivo.
-- La escala SUS se abre en un formulario externo configurable.
-- La navegación usa rutas con `#`, compatibles con subcarpetas de GitHub Pages.
+También quedan pendientes las pruebas en dispositivos físicos Android/iOS, la auditoría de accesibilidad con tecnologías de apoyo, la instalación y actualización PWA sobre HTTPS real y la impresión física con las configuraciones de cada equipo. Las comprobaciones efectivamente realizadas se describen en `docs/PRUEBAS_REALIZADAS.md`.

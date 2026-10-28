@@ -3,72 +3,153 @@
 
   const modules = [
     {
-      id: 1,
-      title: "Conociendo la LLA",
-      shortTitle: "La LLA",
-      icon: "book",
-      tone: "blue",
-      summary: "Qué es la leucemia linfoblástica aguda, cómo se confirma y qué significa el diagnóstico.",
-      objective: "Comprender la enfermedad con palabras claras y reconocer el papel del cuidador durante el proceso.",
-      image: "assets/images/celulas-sangre.webp",
-      imageAlt: "Representación educativa de glóbulos rojos, glóbulos blancos y plaquetas.",
-      keyMessages: [
+      "id": 1,
+      "title": "Conociendo la LLA",
+      "shortTitle": "La LLA",
+      "icon": "book",
+      "tone": "blue",
+      "summary": "Qué es la leucemia linfoblástica aguda, cómo se confirma y qué significa el diagnóstico.",
+      "objective": "Comprender la enfermedad con palabras claras y reconocer el papel del cuidador durante el proceso.",
+      "image": "assets/images/celulas-sangre.webp",
+      "imageAlt": "Representación educativa de glóbulos rojos, glóbulos blancos y plaquetas.",
+      "keyMessages": [
         "La LLA es el cáncer más frecuente en la infancia y afecta células que forman parte de los glóbulos blancos.",
         "No es contagiosa y no aparece por algo que hayan hecho los padres o cuidadores.",
         "Con diagnóstico oportuno y tratamiento adecuado, muchos niños logran superar la enfermedad.",
         "El tratamiento puede durar meses o años y requiere controles periódicos.",
         "El cuidador es una parte fundamental del equipo de cuidado."
       ],
-      sections: [
+      "sections": [
         {
-          title: "¿Qué ocurre en la sangre?",
-          text: "La médula ósea produce las células de la sangre. En la LLA se forman demasiadas células inmaduras llamadas linfoblastos, que desplazan a las células sanas.",
-          bullets: ["Menos glóbulos rojos puede causar cansancio o palidez.", "Menos plaquetas puede facilitar moretones o sangrado.", "Menos glóbulos blancos sanos puede aumentar el riesgo de infección."]
+          "title": "¿Qué ocurre en la sangre?",
+          "text": "La médula ósea produce las células de la sangre. En la LLA se forman demasiadas células inmaduras llamadas linfoblastos, que desplazan a las células sanas.",
+          "bullets": [
+            "Menos glóbulos rojos puede causar cansancio o palidez.",
+            "Menos plaquetas puede facilitar moretones o sangrado.",
+            "Menos glóbulos blancos sanos puede aumentar el riesgo de infección."
+          ]
         },
         {
-          title: "Señales que pueden llevar al diagnóstico",
-          text: "Los síntomas también pueden aparecer en otras enfermedades. Solo el equipo de salud puede establecer el diagnóstico.",
-          bullets: ["Fiebre o infecciones repetidas.", "Palidez, cansancio o poca energía.", "Moretones, petequias o sangrado.", "Dolor de huesos o articulaciones.", "Ganglios aumentados o abdomen inflamado."]
+          "title": "Señales que pueden llevar al diagnóstico",
+          "text": "Los síntomas también pueden aparecer en otras enfermedades. Solo el equipo de salud puede establecer el diagnóstico.",
+          "bullets": [
+            "Fiebre o infecciones repetidas.",
+            "Palidez, cansancio o poca energía.",
+            "Moretones, petequias o sangrado.",
+            "Dolor de huesos o articulaciones.",
+            "Ganglios aumentados o abdomen inflamado."
+          ]
         },
         {
-          title: "¿Cómo se confirma?",
-          text: "El equipo tratante puede solicitar un cuadro hemático y estudios de médula ósea. También puede indicar otros exámenes para conocer el tipo de leucemia y planear el tratamiento.",
-          note: "Pida que le expliquen cada examen y anote las dudas antes de la consulta."
+          "title": "¿Cómo se confirma?",
+          "text": "El equipo tratante puede solicitar los siguientes estudios según la valoración del niño y el criterio médico:",
+          "note": "Pida que le expliquen cada examen y anote las dudas antes de la consulta.",
+          "bullets": [
+            "Hemograma, extendido de sangre periférica y reticulocitos en sangre.",
+            "Punción y aspirado de médula ósea.",
+            "Citogenética.",
+            "Estudios moleculares.",
+            "Biopsia de médula ósea y citometría de flujo en líquido cefalorraquídeo.",
+            "Imágenes: radiografías, ecografía de abdomen total, ecografía testicular según la clínica, ecocardiograma y resonancia magnética de cerebro a criterio médico."
+          ]
         },
         {
-          title: "Pronóstico y seguimiento",
-          text: "Cada niño es diferente. La respuesta al tratamiento, los resultados de los estudios y otros factores orientan al equipo tratante. Evite comparar procesos o cifras sin contexto clínico."
+          "title": "Pronóstico y seguimiento",
+          "text": "Cada niño es diferente. La respuesta al tratamiento, los resultados de los estudios y otros factores orientan al equipo tratante. Evite comparar procesos o cifras sin contexto clínico."
         }
       ],
-      do: ["Consultar fuentes recomendadas por el equipo de salud.", "Participar en las consultas y anotar preguntas.", "Comunicar cambios en el estado del niño.", "Explicar lo que ocurre con palabras apropiadas para su edad."],
-      avoid: ["Confiar en cadenas o publicaciones sin fuente.", "Comparar el caso con el de otros niños.", "Ocultar síntomas por miedo o vergüenza.", "Interrumpir controles o tratamiento."],
-      consult: ["Si no comprende el diagnóstico o una indicación.", "Si aparece un síntoma nuevo.", "Si necesita orientación para el cuidado en casa."],
-      checklist: ["Anoté mis preguntas para la próxima consulta.", "Sé cómo contactar al equipo tratante.", "Puedo explicar con mis palabras qué es la LLA."]
+      "do": [
+        "Consultar fuentes recomendadas por el equipo de salud.",
+        "Participar en las consultas y anotar preguntas.",
+        "Comunicar cambios en el estado del niño.",
+        "Explicar lo que ocurre con palabras apropiadas para su edad."
+      ],
+      "avoid": [
+        "Confiar en cadenas o publicaciones sin fuente.",
+        "Comparar el caso con el de otros niños.",
+        "Ocultar síntomas por miedo o vergüenza.",
+        "Interrumpir controles o tratamiento."
+      ],
+      "consult": [
+        "Si no comprende el diagnóstico o una indicación.",
+        "Si aparece un síntoma nuevo.",
+        "Si necesita orientación para el cuidado en casa."
+      ],
+      "checklist": [
+        "Anoté mis preguntas para la próxima consulta.",
+        "Sé cómo contactar al equipo tratante.",
+        "Puedo explicar con mis palabras qué es la LLA."
+      ]
     },
     {
-      id: 2,
-      title: "Tratamiento",
-      shortTitle: "Tratamiento",
-      icon: "iv",
-      tone: "teal",
-      summary: "Objetivos, fases de la quimioterapia, procedimientos y controles durante el tratamiento.",
-      objective: "Anticipar los principales momentos del tratamiento y saber qué preguntar al equipo de hemato-oncología.",
-      keyMessages: [
+      "id": 2,
+      "title": "Tratamiento",
+      "shortTitle": "Tratamiento",
+      "icon": "iv",
+      "tone": "teal",
+      "summary": "Objetivos, fases de la quimioterapia, procedimientos y controles durante el tratamiento.",
+      "objective": "Conocer los principales momentos del tratamiento y saber qué preguntar al equipo de hemato-oncología.",
+      "keyMessages": [
         "El plan de tratamiento se adapta al tipo de LLA y a la respuesta de cada niño.",
         "La quimioterapia se administra por etapas y puede usar distintas vías.",
         "Los controles permiten vigilar la respuesta y prevenir o tratar complicaciones.",
         "Nunca cambie el plan sin hablar con el equipo tratante."
       ],
-      sections: [
-        { title: "¿Qué busca el tratamiento?", text: "Eliminar las células leucémicas, alcanzar la remisión, mantenerla y disminuir el riesgo de recaída. El equipo explicará el objetivo de cada fase." },
-        { title: "Fases que puede escuchar", text: "Los nombres y la duración pueden variar según el protocolo.", bullets: ["Inducción: busca alcanzar la remisión.", "Consolidación o intensificación: actúa sobre células que puedan quedar.", "Mantenimiento: ayuda a conservar la remisión durante un periodo prolongado."] },
-        { title: "Procedimientos frecuentes", text: "Pueden incluir punción lumbar, aspirado de médula ósea, transfusiones, estudios de laboratorio y cuidado de un catéter venoso central.", note: "Antes de cada procedimiento pregunte para qué sirve, cómo prepararse y qué cuidados se necesitan después." },
-        { title: "Hospitalización y controles", text: "Algunas etapas requieren hospitalización; otras permiten continuar parte del cuidado en casa. Cumpla las fechas de laboratorio y consulta indicadas." }
+      "sections": [
+        {
+          "title": "¿Qué busca el tratamiento?",
+          "text": "Eliminar las células leucémicas, alcanzar la remisión, mantenerla y disminuir el riesgo de recaída. El equipo explicará el objetivo de cada fase."
+        },
+        {
+          "title": "Fases que puede escuchar",
+          "text": "Los nombres y la duración pueden variar según el protocolo.",
+          "bullets": [
+            "Inducción: busca alcanzar la remisión.",
+            "Consolidación o intensificación: actúa sobre células que puedan quedar.",
+            "Mantenimiento: ayuda a conservar la remisión durante un periodo prolongado."
+          ]
+        },
+        {
+          "title": "Procedimientos frecuentes",
+          "text": "Pueden incluir punción lumbar, aspirado de médula ósea, transfusiones, estudios de laboratorio y cuidado de un catéter venoso central.",
+          "note": "Antes de cada procedimiento pregunte para qué sirve, cómo prepararse y qué cuidados se necesitan después."
+        },
+        {
+          "title": "Hospitalización y controles",
+          "text": "Algunas etapas requieren hospitalización; otras permiten continuar parte del cuidado en casa. Cumpla las fechas de laboratorio y consulta indicadas."
+        },
+        {
+          "title": "Conocer el trasplante",
+          "text": "La indicación de un trasplante no es igual para todos los niños. El equipo de hematología-oncología determina si es apropiado considerando la enfermedad, la respuesta al tratamiento y las condiciones del niño.",
+          "links": [
+            {
+              "label": "Explorar el módulo de trasplante",
+              "url": "#/modulo/11"
+            }
+          ]
+        }
       ],
-      do: ["Llevar una lista actualizada de medicamentos.", "Cumplir citas, exámenes y recomendaciones.", "Preguntar qué debe vigilar después de cada procedimiento.", "Guardar los teléfonos y rutas de atención."],
-      avoid: ["Modificar fechas, dosis o procedimientos por cuenta propia.", "Retirarse de la institución sin comprender las indicaciones.", "Comparar protocolos entre pacientes."],
-      consult: ["Si una cita o medicamento no está disponible.", "Si no entiende una fase o procedimiento.", "Ante cualquier cambio clínico o signo de alarma."],
-      checklist: ["Conozco la próxima cita o control.", "Tengo el plan de tratamiento a la mano.", "Sé qué señales debo vigilar hoy."]
+      "do": [
+        "Llevar una lista actualizada de medicamentos.",
+        "Cumplir citas, exámenes y recomendaciones.",
+        "Preguntar qué debe vigilar después de cada procedimiento.",
+        "Guardar los teléfonos y rutas de atención."
+      ],
+      "avoid": [
+        "Modificar fechas, dosis o procedimientos por cuenta propia.",
+        "Retirarse de la institución sin comprender las indicaciones.",
+        "Comparar protocolos entre pacientes."
+      ],
+      "consult": [
+        "Si una cita o medicamento no está disponible.",
+        "Si no entiende una fase o procedimiento.",
+        "Ante cualquier cambio clínico o signo de alarma."
+      ],
+      "checklist": [
+        "Conozco la próxima cita o control.",
+        "Tengo el plan de tratamiento a la mano.",
+        "Sé qué señales debo vigilar hoy."
+      ]
     },
     {
       id: 3,
@@ -148,31 +229,91 @@
       checklist: ["Separé alimentos crudos y cocidos.", "El agua y los alimentos se prepararon de forma segura.", "Vigilé cuánto bebió y cómo toleró la comida."]
     },
     {
-      id: 6,
-      title: "Prevención de infecciones",
-      shortTitle: "Infecciones",
-      icon: "shield",
-      tone: "teal",
-      summary: "Lavado de manos, higiene del entorno, contactos, vacunas y fiebre.",
-      objective: "Aplicar medidas cotidianas que reducen la exposición a infecciones y actuar oportunamente ante fiebre.",
-      image: "assets/images/lavado-manos.webp",
-      imageAlt: "Secuencia educativa de manos que se mojan, reciben jabón, se frotan y se enjuagan.",
-      keyMessages: [
+      "id": 6,
+      "title": "Prevención de infecciones",
+      "shortTitle": "Infecciones",
+      "icon": "shield",
+      "tone": "teal",
+      "summary": "Lavado de manos, higiene del entorno, contactos, vacunas y fiebre.",
+      "objective": "Aplicar medidas cotidianas que reducen la exposición a infecciones y actuar oportunamente ante fiebre.",
+      "image": "assets/images/lavado-manos.webp",
+      "imageAlt": "Secuencia educativa de manos que se mojan, reciben jabón, se frotan y se enjuagan.",
+      "keyMessages": [
         "La quimioterapia puede disminuir temporalmente las defensas.",
         "El lavado de manos es una de las medidas más efectivas.",
         "Evite el contacto con personas enfermas y mantenga limpio el entorno.",
         "La fiebre puede ser la primera señal de una infección."
       ],
-      sections: [
-        { title: "Lavado de manos", text: "Lávese con agua y jabón antes de preparar alimentos o medicamentos, después de ir al baño, al volver de la calle y antes de tocar el catéter. Frote palmas, dorsos, dedos, uñas y muñecas; enjuague y seque bien." },
-        { title: "Casa, juguetes y mascotas", text: "Limpie superficies y juguetes de uso frecuente. Evite que el niño limpie excrementos o areneros; consulte las recomendaciones específicas sobre mascotas." },
-        { title: "Personas enfermas y multitudes", text: "Pida a las visitas que avisen si tienen fiebre, tos, diarrea u otros síntomas. Evite contactos y lugares concurridos cuando el equipo lo indique." },
-        { title: "Mascarillas y vacunas", text: "Use mascarilla y programe vacunas únicamente según las indicaciones del equipo tratante. No todas las vacunas son apropiadas durante todas las fases del tratamiento.", note: "Mida la temperatura con un termómetro y conozca la ruta de urgencias de su institución." }
+      "sections": [
+        {
+          "title": "Lavado de manos",
+          "text": "Lávese con agua y jabón antes de preparar alimentos o medicamentos, después de ir al baño, al volver de la calle y antes de tocar el catéter. Frote palmas, dorsos, dedos, uñas y muñecas; enjuague y seque bien."
+        },
+        {
+          "title": "Casa, juguetes y mascotas",
+          "text": "Limpie superficies y juguetes de uso frecuente. Evite que el niño limpie excrementos o areneros; consulte las recomendaciones específicas sobre mascotas."
+        },
+        {
+          "title": "Un espacio seguro para jugar",
+          "text": "Antes de que el niño juegue, prepare un espacio limpio, seguro y apropiado para su edad.",
+          "bullets": [
+            "Mantenga el área libre de polvo y suciedad visible.",
+            "Limpie regularmente las superficies donde el niño juega.",
+            "Evite que juegue directamente sobre superficies contaminadas con tierra.",
+            "Evite el contacto con tierra de jardín, materas o actividades de excavación durante períodos de inmunosupresión importante.",
+            "Mantenga los productos de limpieza fuera del alcance del niño."
+          ],
+          "note": "Gatear no significa que el niño deba permanecer aislado. Siga las recomendaciones específicas del equipo de salud según el estado de defensas del niño.",
+          "image": "assets/images/espacio-seguro-jugar.webp",
+          "imageAlt": "Un niño pequeño juega con piezas grandes junto a una cuidadora en un espacio doméstico limpio y ordenado."
+        },
+        {
+          "title": "Cuida sus juguetes",
+          "text": "Antes, durante y después del juego, tenga en cuenta estas indicaciones:",
+          "bullets": [
+            "Antes de jugar: lávese las manos.",
+            "Durante el juego: evite compartir juguetes que el niño lleve a la boca.",
+            "Después de jugar: limpie los juguetes según el material y las indicaciones del fabricante.",
+            "Peluches: lavar regularmente y siempre que estén sucios.",
+            "Plástico: preferir juguetes lavables y fáciles de limpiar.",
+            "Baño: evitar juguetes que acumulen agua y no puedan secarse completamente."
+          ],
+          "image": "assets/images/cuidado-juguetes.webp",
+          "imageAlt": "Una cuidadora limpia un camión de juguete; otros juguetes están secos y un peluche permanece en una repisa separada."
+        },
+        {
+          "title": "Personas enfermas y multitudes",
+          "text": "Pida a las visitas que avisen si tienen fiebre, tos, diarrea u otros síntomas. Evite contactos y lugares concurridos cuando el equipo lo indique."
+        },
+        {
+          "title": "Mascarillas y vacunas",
+          "text": "Use mascarilla y programe vacunas únicamente según las indicaciones del equipo tratante. No todas las vacunas son apropiadas durante todas las fases del tratamiento.",
+          "note": "Mida la temperatura con un termómetro y conozca la ruta de urgencias de su institución."
+        }
       ],
-      do: ["Lavarse las manos con frecuencia.", "Mantener uñas cortas y limpias.", "Higienizar juguetes y superficies.", "Preparar alimentos de forma segura y vigilar la temperatura."],
-      avoid: ["Contacto cercano con personas enfermas.", "Alimentos crudos o poco cocidos.", "Vacunas o medicamentos sin autorización.", "Ignorar o intentar ocultar la fiebre."],
-      consult: ["Temperatura de 38 °C o más: atención inmediata.", "Escalofríos, dificultad para respirar o tos persistente.", "Enrojecimiento, dolor o secreción en una herida o catéter."],
-      checklist: ["Todas las personas se lavaron las manos.", "El termómetro funciona y está disponible.", "Conozco la ruta que debo seguir si hay fiebre."]
+      "do": [
+        "Lavarse las manos con frecuencia.",
+        "Mantener uñas cortas y limpias.",
+        "Higienizar juguetes y superficies.",
+        "Preparar alimentos de forma segura y vigilar la temperatura."
+      ],
+      "avoid": [
+        "Contacto cercano con personas enfermas.",
+        "Alimentos crudos o poco cocidos.",
+        "Vacunas o medicamentos sin autorización.",
+        "Ignorar o intentar ocultar la fiebre."
+      ],
+      "consult": [
+        "Temperatura de 38 °C o más: atención inmediata.",
+        "Escalofríos, dificultad para respirar o tos persistente.",
+        "Enrojecimiento, dolor o secreción en una herida o catéter."
+      ],
+      "checklist": [
+        "Todas las personas se lavaron las manos.",
+        "El termómetro funciona y está disponible.",
+        "Conozco la ruta que debo seguir si hay fiebre."
+      ],
+      "consultNote": "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante."
     },
     {
       id: 7,
@@ -200,29 +341,112 @@
       checklist: ["Registré los síntomas y su duración.", "El niño tolera líquidos y está orinando.", "Sé cuáles cambios requieren una llamada o urgencias."]
     },
     {
-      id: 8,
-      title: "Signos de alarma",
-      shortTitle: "Alarmas",
-      icon: "alert",
-      tone: "coral",
-      summary: "Reconozca cuándo debe contactar al equipo o acudir de inmediato a urgencias.",
-      objective: "Tomar decisiones oportunas ante señales que pueden indicar una complicación.",
-      keyMessages: [
+      "id": 8,
+      "title": "Signos de alarma y de regreso al servicio de urgencias",
+      "shortTitle": "Alarmas",
+      "icon": "alert",
+      "tone": "coral",
+      "summary": "Reconozca las señales de alarma y planifique cómo acceder a urgencias, especialmente si vive lejos.",
+      "objective": "Tomar decisiones oportunas ante señales que pueden indicar una complicación.",
+      "keyMessages": [
         "La fiebre durante la quimioterapia se considera una urgencia.",
         "Algunos síntomas requieren atención inmediata, aunque parezcan iniciar de forma leve.",
         "Actuar rápido puede prevenir complicaciones.",
         "Ante la duda, contacte al equipo tratante."
       ],
-      sections: [
-        { title: "Fiebre", text: "Una temperatura de 38 °C o más requiere atención inmediata. Siga la ruta definida por su institución.", note: "No dé medicamentos para ocultar la fiebre ni antibióticos sin indicación. No espere a que la temperatura baje sola." },
-        { title: "Respiración o estado neurológico", text: "Dificultad para respirar, convulsiones, desmayo, confusión o somnolencia excesiva requieren atención inmediata." },
-        { title: "Sangrado y piel", text: "Acuda si hay sangrado que no se detiene, petequias extensas o moretones que aparecen de forma llamativa." },
-        { title: "Dolor, vómito y orina", text: "Busque ayuda inmediata ante dolor intenso que no mejora, vómito persistente con incapacidad para tolerar líquidos, disminución marcada de la orina o signos de deshidratación." }
+      "sections": [
+        {
+          "title": "Fiebre",
+          "text": "Una temperatura de 38 °C o más requiere atención inmediata. Siga la ruta definida por su institución.",
+          "note": "No dé medicamentos para ocultar la fiebre ni antibióticos sin indicación. No espere a que la temperatura baje sola. Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante."
+        },
+        {
+          "title": "Respiración o estado neurológico",
+          "text": "Dificultad para respirar, convulsiones, desmayo, confusión o somnolencia excesiva requieren atención inmediata."
+        },
+        {
+          "title": "Sangrado y piel",
+          "text": "Acuda si hay sangrado que no se detiene, petequias extensas o moretones que aparecen de forma llamativa."
+        },
+        {
+          "title": "Dolor, vómito y orina",
+          "text": "Busque ayuda inmediata ante dolor intenso que no mejora, vómito persistente con incapacidad para tolerar líquidos, disminución marcada de la orina o signos de deshidratación."
+        },
+        {
+          "title": "¿Vives lejos del hospital o clínica donde atienden a tu hijo?",
+          "text": "Cuando un niño con leucemia recibe tratamientos que pueden disminuir sus defensas, es importante planificar con anticipación cómo llegará a un servicio de atención en caso de presentar una urgencia.",
+          "paragraphs": [
+            "Si la familia vive a varias horas del centro donde recibe el tratamiento, converse con el equipo de hematología-oncología sobre la posibilidad de permanecer temporalmente cerca del hospital durante los períodos de mayor riesgo, cuando así lo consideren necesario.",
+            "Ante algunas complicaciones, como fiebre durante períodos de defensas bajas, el niño puede necesitar una valoración médica urgente y tratamiento oportuno. Recorrer largas distancias antes de recibir atención puede representar una dificultad logística."
+          ],
+          "image": "assets/images/plan-vivo-lejos.webp",
+          "imageAlt": "Una cuidadora y un niño preparan una bolsa junto a una carpeta; al fondo se ven un vehículo y un edificio sanitario genérico."
+        },
+        {
+          "title": "Planifique con anticipación",
+          "text": "Antes de regresar a casa, pregunte al equipo de salud:",
+          "bullets": [
+            "¿Durante qué períodos debemos permanecer cerca del hospital?",
+            "¿A partir de qué síntomas debemos acudir inmediatamente?",
+            "¿A qué servicio de urgencias debemos dirigirnos?",
+            "¿Podemos acudir a un hospital cercano si estamos lejos del centro tratante?",
+            "¿Qué debemos hacer si estamos a varias horas de distancia?",
+            "¿A qué número podemos llamar durante una emergencia?",
+            "¿Existe algún programa de alojamiento temporal para familias que viven lejos?"
+          ]
+        },
+        {
+          "title": "Si vivimos muy lejos",
+          "text": "No tome la decisión de mudarse permanentemente por cuenta propia. Hable con el equipo tratante para valorar alternativas como:",
+          "bullets": [
+            "Alojamiento temporal cerca del centro de atención.",
+            "Programas de apoyo para familias.",
+            "Hospital o servicio de urgencias cercano para situaciones específicas.",
+            "Comunicación directa con el equipo tratante.",
+            "Plan de transporte para situaciones de emergencia."
+          ],
+          "note": "La cercanía al centro de atención debe planificarse de acuerdo con la condición del niño, la etapa del tratamiento, el riesgo clínico y las indicaciones de su equipo de salud."
+        },
+        {
+          "title": "Ante una urgencia, siga el plan acordado",
+          "text": "Ante un signo de alarma, no retrase la atención intentando realizar un viaje prolongado hasta el hospital tratante.",
+          "note": "Siga el plan de emergencia establecido por el equipo de hematología-oncología. Si el niño presenta una situación que requiere atención inmediata, solicite atención de urgencias según las instrucciones recibidas."
+        },
+        {
+          "title": "Mi plan si vivo lejos",
+          "text": "Imprima la hoja y complétela a mano junto con el equipo de salud. Incluye el centro tratante, los servicios cercanos, el transporte y las indicaciones para actuar.",
+          "links": [
+            {
+              "label": "Abrir mi plan si vivo lejos",
+              "url": "recursos/plan-si-vivo-lejos.html"
+            }
+          ]
+        }
       ],
-      do: ["Medir y anotar la temperatura.", "Mantener la calma e iniciar la ruta indicada.", "Llevar resumen clínico y lista de medicamentos.", "Avisar al equipo mientras se dirige a urgencias si así se lo indicaron."],
-      avoid: ["Dar antibióticos no formulados.", "Esperar varias horas para ver si mejora.", "Enmascarar la fiebre sin orientación.", "Retrasar el traslado por trámites o pertenencias."],
-      consult: ["38 °C o más.", "Dificultad para respirar o convulsiones.", "Sangrado que no se detiene.", "Somnolencia excesiva, dolor intenso o poca orina."],
-      checklist: ["Conozco la dirección de urgencias.", "Tengo transporte o un plan para llegar.", "El resumen clínico y los teléfonos están disponibles."]
+      "do": [
+        "Medir y anotar la temperatura.",
+        "Mantener la calma e iniciar la ruta indicada.",
+        "Llevar resumen clínico y lista de medicamentos.",
+        "Avisar al equipo mientras se dirige a urgencias si así se lo indicaron."
+      ],
+      "avoid": [
+        "Dar antibióticos no formulados.",
+        "Esperar varias horas para ver si mejora.",
+        "Enmascarar la fiebre sin orientación.",
+        "Retrasar el traslado por trámites o pertenencias."
+      ],
+      "consult": [
+        "38 °C o más.",
+        "Dificultad para respirar o convulsiones.",
+        "Sangrado que no se detiene.",
+        "Somnolencia excesiva, dolor intenso o poca orina."
+      ],
+      "checklist": [
+        "Conozco la dirección de urgencias.",
+        "Tengo transporte o un plan para llegar.",
+        "El resumen clínico y los teléfonos están disponibles."
+      ],
+      "consultNote": "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante."
     },
     {
       id: 9,
@@ -275,6 +499,282 @@
       avoid: ["Guardar nombres, diagnósticos o documentos personales aquí.", "Tomar decisiones clínicas solo con información de internet.", "Reemplazar las indicaciones del equipo con consejos generales."],
       consult: ["Si necesita ayuda para comprender una indicación.", "Si encuentra información contradictoria.", "Si una barrera impide asistir, obtener medicamentos o continuar el cuidado."],
       checklist: ["Guardé los contactos esenciales.", "Mi lista de medicamentos está actualizada.", "Sé dónde encontrar el glosario y las alarmas."]
+    },
+    {
+      "id": 11,
+      "title": "Trasplante de células madre hematopoyéticas",
+      "shortTitle": "Trasplante",
+      "icon": "cells",
+      "tone": "gold",
+      "summary": "Qué es el TCMH, cómo es el proceso y qué cuidados seguir antes, durante y después.",
+      "objective": "Comprender el trasplante, sus etapas y los cuidados antes, durante y después, siguiendo las indicaciones del equipo de trasplante.",
+      "image": "assets/images/trasplante-acompanamiento.webp",
+      "imageAlt": "Un niño y su cuidadora conversan con una profesional de salud que sostiene una carpeta.",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "imageFit": "contain",
+      "keyMessages": [
+        "La indicación del trasplante es individual: no todos los niños con LLA lo necesitan.",
+        "En la LLA pediátrica, el trasplante alogénico tiene mayor relevancia clínica; ambos tipos no tienen la misma utilización.",
+        "La prevención de infecciones, la adherencia al tratamiento y el seguimiento continúan después del trasplante.",
+        "No suspenda, modifique o duplique medicamentos sin indicación del equipo tratante.",
+        "Siga el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante."
+      ],
+      "sections": [
+        {
+          "title": "¿Qué es el trasplante?",
+          "text": "El trasplante de células madre hematopoyéticas (TCMH) es un procedimiento mediante el cual se administran células capaces de reconstruir el sistema hematopoyético después de un tratamiento previo que puede producir una supresión profunda de la médula ósea.",
+          "bullets": [
+            "Las células pueden proceder del propio paciente: trasplante autólogo.",
+            "Las células pueden proceder de un donante: trasplante alogénico.",
+            "Pueden obtenerse de sangre periférica, médula ósea o sangre de cordón umbilical."
+          ]
+        },
+        {
+          "title": "¿Qué hace la médula ósea?",
+          "text": "La médula ósea produce las células sanguíneas necesarias para el organismo. La recuperación de esta producción es una parte fundamental del proceso de trasplante.",
+          "bullets": [
+            "Glóbulos rojos: transportan oxígeno.",
+            "Glóbulos blancos: participan en la defensa contra infecciones.",
+            "Plaquetas: participan en la coagulación y ayudan a prevenir sangrados."
+          ]
+        },
+        {
+          "title": "¿Por qué puede necesitarlo mi hijo?",
+          "text": "En la LLA, el trasplante alogénico puede utilizarse en determinados pacientes, especialmente aquellos con alto riesgo de recaída o enfermedad en recaída, de acuerdo con las características de la enfermedad y la respuesta al tratamiento.",
+          "note": "El equipo de hematología-oncología determina si el trasplante es apropiado considerando las características de la leucemia, la respuesta al tratamiento, el riesgo de recaída, el estado clínico del niño y la disponibilidad de un donante adecuado, entre otros factores."
+        },
+        {
+          "title": "Tipos de trasplante",
+          "text": "En el trasplante autólogo, las células proceden del propio paciente. Se recolectan, se conservan y se administran después del acondicionamiento.",
+          "paragraphs": [
+            "En el trasplante alogénico, las células proceden de otra persona. El donante puede ser un hermano o hermana compatible, un familiar compatible, un donante no relacionado compatible o, en determinadas circunstancias, un donante haploidéntico. El centro puede seleccionar otras fuentes celulares.",
+            "La selección considera la compatibilidad HLA, las características del paciente y la disponibilidad del donante. Las células inmunológicas del donante pueden reconocer células malignas del receptor: es el efecto injerto contra leucemia. También pueden reconocer tejidos sanos y producir enfermedad injerto contra huésped."
+          ],
+          "note": "En la LLA pediátrica, el trasplante alogénico es el escenario de mayor relevancia clínica. Los dos tipos no tienen la misma utilización en esta enfermedad."
+        },
+        {
+          "title": "¿De dónde vienen las células?",
+          "text": "Las células pueden proceder de sangre periférica, médula ósea o sangre de cordón umbilical.",
+          "bullets": [
+            "Sangre periférica: las células se movilizan hacia la sangre y se recolectan mediante aféresis.",
+            "Médula ósea: se obtienen mediante un procedimiento realizado bajo condiciones médicas especializadas."
+          ]
+        },
+        {
+          "title": "Antes del trasplante: evaluación",
+          "text": "Se realiza una valoración integral del niño. Permite identificar riesgos y establecer estrategias preventivas.",
+          "bullets": [
+            "Evaluación de la enfermedad y estudios de laboratorio.",
+            "Evaluación de órganos y estudios infecciosos.",
+            "Valoración nutricional y evaluación odontológica cuando esté indicada.",
+            "Valoración psicosocial.",
+            "Evaluación del donante y compatibilidad."
+          ]
+        },
+        {
+          "title": "Antes del trasplante: acondicionamiento",
+          "text": "El niño recibe un régimen de acondicionamiento que puede incluir quimioterapia con o sin radioterapia, según el protocolo y sus características.",
+          "bullets": [
+            "Reducir o eliminar células malignas residuales.",
+            "Preparar el organismo para recibir el injerto.",
+            "Proporcionar inmunosupresión suficiente para favorecer el establecimiento del injerto."
+          ],
+          "note": "No todos los niños reciben exactamente el mismo esquema."
+        },
+        {
+          "title": "Día 0: recibimos las células madre",
+          "text": "El día en que se administran las células madre suele denominarse día 0. Se administran por vía intravenosa a través del acceso vascular indicado por el equipo de salud, de manera similar a una transfusión. No se realiza una cirugía para colocar las células directamente dentro de los huesos.",
+          "paragraphs": [
+            "Durante la infusión, el equipo vigila al niño para identificar posibles reacciones. Informe inmediatamente al personal de salud si observa:"
+          ],
+          "bullets": [
+            "Dificultad respiratoria, escalofríos o fiebre.",
+            "Dolor, náuseas o vómitos.",
+            "Cambios en el estado general o cualquier manifestación que le genere preocupación."
+          ],
+          "note": "No intente tratar la reacción por cuenta propia."
+        },
+        {
+          "title": "Injerto o prendimiento",
+          "text": "Después de la infusión, las células madre llegan a la médula ósea y comienzan progresivamente a producir nuevas células sanguíneas. Este proceso se conoce como injerto o prendimiento hematopoyético.",
+          "note": "Durante este período puede haber una profunda disminución de las células sanguíneas. El niño requiere vigilancia estrecha."
+        },
+        {
+          "title": "Ahora comienza la recuperación",
+          "text": "El seguimiento continúa después del injerto. El equipo vigila:",
+          "bullets": [
+            "Recuperación hematológica e inmunológica.",
+            "Infecciones, toxicidades y enfermedad injerto contra huésped.",
+            "Funcionamiento de órganos y estado nutricional.",
+            "Medicamentos, vacunación y posibles efectos tardíos."
+          ],
+          "note": "Entre las complicaciones que vigila el equipo están la fiebre neutropénica, infecciones bacterianas, fúngicas y virales, sangrado, fallo del injerto, complicaciones endoteliales y EICH aguda y crónica."
+        },
+        {
+          "title": "Prevención de infecciones",
+          "text": "Antes del trasplante se realizan evaluaciones para identificar infecciones previas y factores de riesgo. Después del trasplante puede haber una importante disminución de las defensas, por lo que se mantiene la vigilancia.",
+          "bullets": [
+            "Mantenga una higiene adecuada de manos y del entorno.",
+            "Evite el contacto cercano con personas enfermas.",
+            "Informe si algún integrante del hogar presenta síntomas infecciosos.",
+            "Cumpla las recomendaciones del centro de trasplante.",
+            "Siga las indicaciones relacionadas con medicamentos preventivos."
+          ],
+          "links": [
+            {
+              "label": "Repasar prevención de infecciones",
+              "url": "#/modulo/6"
+            }
+          ]
+        },
+        {
+          "title": "Medicamentos",
+          "text": "Aprenda junto con el equipo: qué medicamento administrará, para qué sirve, qué dosis, a qué hora, cómo administrarlo, qué hacer si el niño vomita y cuándo informar.",
+          "note": "No suspender, modificar o duplicar medicamentos sin indicación del equipo tratante.",
+          "paragraphs": [
+            "En los trasplantes alogénicos pueden utilizarse medicamentos para prevenir o tratar complicaciones inmunológicas como la enfermedad injerto contra huésped."
+          ],
+          "links": [
+            {
+              "label": "Repasar administración de medicamentos",
+              "url": "#/modulo/4"
+            }
+          ]
+        },
+        {
+          "title": "Alimentación segura",
+          "text": "Siga las recomendaciones individualizadas del equipo de nutrición.",
+          "bullets": [
+            "Higiene de manos antes de preparar alimentos.",
+            "Manipulación y almacenamiento seguros.",
+            "Agua segura y cocción adecuada."
+          ],
+          "note": "Las recomendaciones alimentarias pueden variar según el momento del trasplante y las condiciones clínicas del niño. Siga las indicaciones del equipo tratante.",
+          "links": [
+            {
+              "label": "Repasar alimentación",
+              "url": "#/modulo/5"
+            }
+          ]
+        },
+        {
+          "title": "También debemos prepararnos emocionalmente",
+          "text": "La educación y el acompañamiento ayudan a comprender el cuidado y a expresar las preocupaciones de la familia.",
+          "bullets": [
+            "Pregunte al equipo cuando algo no sea comprendido.",
+            "Exprese preocupaciones y temores.",
+            "Busque apoyo psicológico cuando esté disponible.",
+            "Mantenga comunicación con familiares y redes de apoyo.",
+            "Prepare con anticipación los elementos necesarios para la hospitalización.",
+            "Defina quién será el cuidador principal y quién puede brindar apoyo."
+          ],
+          "links": [
+            {
+              "label": "Consultar apoyo al cuidador",
+              "url": "#/modulo/9"
+            }
+          ]
+        },
+        {
+          "title": "Sangrado y otras complicaciones",
+          "text": "La disminución de plaquetas puede aumentar el riesgo de sangrado. Comunique al equipo:",
+          "bullets": [
+            "Sangrado nasal persistente.",
+            "Sangre en orina o deposiciones.",
+            "Vómito con sangre.",
+            "Aparición extensa o inusual de hematomas.",
+            "Cualquier sangrado que genere preocupación."
+          ]
+        },
+        {
+          "title": "Enfermedad injerto contra huésped (EICH)",
+          "text": "En el trasplante alogénico, algunas células inmunitarias del donante pueden reconocer tejidos del receptor como diferentes y generar una respuesta inmunológica. Esto se conoce como enfermedad injerto contra huésped (EICH o GVHD). Puede afectar la piel, el hígado y el tracto gastrointestinal, entre otros órganos.",
+          "bullets": [
+            "Piel: erupciones o cambios nuevos.",
+            "Digestivo: diarrea o cambios gastrointestinales importantes.",
+            "Hígado: cambios clínicos que el equipo haya indicado vigilar."
+          ],
+          "note": "Es una complicación potencialmente grave. El cuidador no debe diagnosticar EICH: debe reconocer cambios y comunicarlos oportunamente al equipo tratante."
+        },
+        {
+          "title": "Signos de alarma: ¿cuándo debo consultar?",
+          "text": "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante.",
+          "paragraphs": [
+            "Consulte inmediatamente según las indicaciones recibidas ante:"
+          ],
+          "bullets": [
+            "Fiebre o temperatura por encima del límite indicado por el equipo.",
+            "Dificultad para respirar o sangrado.",
+            "Cambios importantes en el estado de conciencia o comportamiento.",
+            "Convulsiones.",
+            "Vómitos persistentes.",
+            "Diarrea importante o persistente.",
+            "Dolor intenso o nuevo.",
+            "Erupciones o cambios importantes en la piel.",
+            "Disminución marcada de la cantidad de orina.",
+            "Imposibilidad para tomar medicamentos o líquidos.",
+            "Cualquier deterioro repentino del estado general."
+          ],
+          "note": "La fiebre y la neutropenia requieren valoración clínica y manejo oportunos por el equipo de salud."
+        },
+        {
+          "title": "Cuidados en casa",
+          "text": "Antes de regresar a casa, revise las indicaciones junto con el equipo:",
+          "bullets": [
+            "Higiene: lavado de manos, higiene personal y limpieza del entorno.",
+            "Medicamentos: nombre, dosis, horario, vía, almacenamiento y qué hacer ante dificultades de administración.",
+            "Catéter: reconocer cambios en el sitio, mantener los cuidados indicados e informar signos de infección o complicaciones.",
+            "Alimentación: seguridad alimentaria, hidratación y recomendaciones individualizadas.",
+            "Controles: citas, laboratorios, medicamentos y seguimiento del injerto.",
+            "Signos de alarma: qué observar, a quién llamar y dónde acudir."
+          ]
+        },
+        {
+          "title": "Mi plan de cuidados después del trasplante",
+          "text": "Imprima la hoja y complétela a mano junto con el equipo. Incluye la temperatura de alarma, el servicio de atención, medicamentos, horarios, cuidado del catéter, próximo control y signos de alarma específicos.",
+          "links": [
+            {
+              "label": "Abrir mi plan de cuidados",
+              "url": "recursos/plan-cuidados-trasplante.html"
+            }
+          ]
+        },
+        {
+          "title": "Comprender, identificar, actuar y consultar",
+          "text": "Use estas preguntas para conversar con el equipo de salud:",
+          "bullets": [
+            "Comprender: ¿qué es el trasplante?",
+            "Identificar: ¿qué cambios debo observar en mi hijo?",
+            "Actuar: ¿qué debo hacer si aparecen?",
+            "Consultar: siga las indicaciones y la ruta acordadas con el equipo tratante."
+          ]
+        }
+      ],
+      "do": [
+        "Cumplir las recomendaciones del centro de trasplante y el tratamiento indicado.",
+        "Mantener la higiene de manos, del entorno y de los alimentos.",
+        "Comunicar cambios o preocupaciones al equipo.",
+        "Preparar el plan de cuidados y acudir a los controles."
+      ],
+      "avoid": [
+        "Suspender, modificar o duplicar medicamentos sin indicación.",
+        "Tratar por cuenta propia una reacción durante la infusión.",
+        "Intentar diagnosticar EICH.",
+        "Ignorar un deterioro repentino del estado general."
+      ],
+      "consult": [
+        "Fiebre o temperatura por encima del límite indicado por el equipo de trasplante.",
+        "Dificultad respiratoria, sangrado, convulsiones o cambios de conciencia.",
+        "Vómitos o diarrea persistentes, dolor intenso, cambios importantes en la piel o disminución marcada de orina.",
+        "Imposibilidad para tomar medicamentos o líquidos, o deterioro repentino del estado general."
+      ],
+      "consultNote": "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante.",
+      "checklist": [
+        "Revisé con el equipo la temperatura de alarma y dónde acudir.",
+        "Comprendo las indicaciones de medicamentos y cuidados en casa.",
+        "Tengo el plan de controles y sé quién puede apoyarme."
+      ]
     }
   ];
 
@@ -304,8 +804,33 @@
     { term: "Trombocitopenia", definition: "Disminución del número de plaquetas.", recognize: "Puede relacionarse con petequias, moretones o sangrado.", action: "Informe los cambios y evite medicamentos no autorizados.", fact: "Solo el examen de sangre confirma el nivel de plaquetas." }
   ];
 
+  glossary.push(...[
+    {
+      "term": "Trasplante de células madre hematopoyéticas (TCMH)",
+      "definition": "Procedimiento en el que se administran células capaces de reconstruir la producción de células sanguíneas después del tratamiento previo.",
+      "recognize": "El equipo determina de forma individual si está indicado.",
+      "action": "Pregunte por las etapas y los cuidados antes, durante y después.",
+      "fact": "Las células pueden proceder del propio paciente o de un donante."
+    },
+    {
+      "term": "Injerto o prendimiento",
+      "definition": "Proceso en el que las células madre llegan a la médula ósea y comienzan progresivamente a producir nuevas células sanguíneas.",
+      "recognize": "Es un momento importante del seguimiento después de la infusión.",
+      "action": "Cumpla la vigilancia y los controles indicados.",
+      "fact": "El seguimiento continúa después del injerto."
+    },
+    {
+      "term": "Enfermedad injerto contra huésped (EICH)",
+      "definition": "Respuesta inmunológica en la que células del donante reconocen tejidos del receptor como diferentes después de un trasplante alogénico.",
+      "recognize": "Puede afectar piel, hígado y tracto gastrointestinal, entre otros órganos.",
+      "action": "Reconozca cambios y comuníquelos al equipo. No intente diagnosticarla.",
+      "fact": "También puede mencionarse con la sigla GVHD."
+    }
+  ]);
+
   const alarms = {
     intro: "Use este semáforo como orientación educativa. Siga siempre la ruta y las indicaciones específicas de su institución.",
+    transplantNote: "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante.",
     levels: [
       {
         id: "red",
@@ -331,7 +856,7 @@
   const faq = [
     { question: "¿La LLA es contagiosa?", answer: "No. La leucemia linfoblástica aguda no se transmite de una persona a otra." },
     { question: "¿Fue causada por algo que hicimos?", answer: "No se considera consecuencia de una acción del niño, sus padres o cuidadores. Si tiene dudas sobre factores específicos, hable con el equipo." },
-    { question: "¿Qué hago si la temperatura llega a 38 °C?", answer: "Siga de inmediato la ruta de urgencias indicada por su institución. No espere ni intente ocultar la fiebre con medicamentos sin orientación." },
+    { question: "¿Qué hago si la temperatura llega a 38 °C?", answer: "Siga de inmediato la ruta de urgencias indicada por su institución. No espere ni intente ocultar la fiebre con medicamentos sin orientación. Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante." },
     { question: "¿Puedo repetir una dosis si el niño vomita?", answer: "No la repita por su cuenta. Comuníquese con el equipo y tenga a mano el nombre, la dosis y la hora del medicamento." },
     { question: "¿Puede recibir visitas?", answer: "Depende del momento clínico. En general, evite personas con síntomas y pida a todas las visitas que se laven las manos. Confirme restricciones con el equipo." },
     { question: "¿Puede asistir a la escuela?", answer: "La decisión depende de sus defensas, la fase del tratamiento y las condiciones del entorno. Acuérdela con el equipo tratante y la institución educativa." },
@@ -369,11 +894,29 @@
   window.APP_CONTENT = Object.freeze({
     brand: { name: "En Sus Manos", tagline: "Más educación, mejor cuidado" },
     welcome: {
-      eyebrow: "Herramienta educativa para cuidadores",
-      title: "Información clara para acompañar el cuidado de un niño con LLA",
-      text: "Recorra diez módulos breves, consulte signos de alarma y encuentre respuestas con lenguaje sencillo.",
-      disclaimer: "Este recurso complementa la educación del equipo de salud. No reemplaza la consulta, la valoración clínica, el diagnóstico, el tratamiento ni el seguimiento profesional."
+      "eyebrow": "Herramienta educativa para cuidadores",
+      "title": "¡Bienvenidos a En Sus Manos!",
+      "text": "Información para acompañarle durante el cuidado de un niño con LLA.",
+      "paragraphs": [
+        "Hola, soy Liz Gómez, enfermera profesional. Cuando el cáncer toca la vida de las personas que amamos, aparecen momentos de incertidumbre y dificultad. He aprendido que siempre es posible seguir adelante.",
+        "En Sus Manos nació de esa experiencia y de la convicción de que el conocimiento, el cuidado y la esperanza pueden caminar juntos; y de que, aun cuando no tengamos todas las respuestas, podemos confiar plenamente en Dios, quien sostiene nuestras vidas y fortalece nuestros corazones en cada paso del camino.",
+        "¡Bienvenidos a En Sus Manos! Esta herramienta tiene como propósito fortalecer los conocimientos en salud de los cuidadores de niños con leucemia linfoblástica aguda (LLA), porque la educación en salud representa una oportunidad para favorecer un mejor cuidado."
+      ],
+      "disclaimer": "Esta herramienta no reemplaza al equipo de salud. Ante dudas o cambios en la salud de su hijo, consulte a su médico tratante o acuda a urgencias si presenta signos de alarma."
     },
+    transplantNote: "Después de un trasplante, siga siempre el umbral de temperatura y las instrucciones específicas entregadas por el equipo de trasplante.",
+    carePlans: [
+      {
+        "title": "Mi plan de cuidados después del trasplante",
+        "url": "recursos/plan-cuidados-trasplante.html",
+        "description": "Temperatura de alarma, servicio de atención, medicamentos, controles y cuidados indicados."
+      },
+      {
+        "title": "Mi plan si vivo lejos",
+        "url": "recursos/plan-si-vivo-lejos.html",
+        "description": "Centro tratante, urgencias cercanas, transporte, alojamiento y acciones acordadas con el equipo."
+      }
+    ],
     modules,
     glossary,
     alarms,
