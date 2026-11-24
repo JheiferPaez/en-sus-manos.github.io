@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fff1bd">
+  <title>Registro de cuidados después de cada ciclo · En Sus Manos</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="planes.css">
+  <script defer src="../assets/js/print.js"></script>
+  <style>
+    .record-alert { padding: .8rem; border: 2px solid #a82e2b; border-radius: 8px; color: #762b28; font-weight: 700; }
+    .record-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .record-label { font-weight: 400; font-size: .9em; }
+    .record-lines .write-line { height: 1.8rem; }
+    @media (max-width: 480px) { .record-pair { grid-template-columns: 1fr; gap: 0; } }
+    @media print {
+      .record-alert { padding: 6pt; font-size: 9pt; margin: 7pt 0; }
+      .record-lines .write-line { height: 18pt; }
+      .field { padding: 3pt 0; }
+      dt { font-size: 9.5pt; }
+      .intro { font-size: 9.5pt; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Acciones de la hoja"><a href="../#/modulo/12">Volver al módulo</a><a href="../#/recursos">Recursos</a><button type="button" id="print-plan">Imprimir esta hoja</button></nav>
+  <main class="sheet">
+    <header class="brand"><img src="../assets/icons/logo.svg" alt="" width="48" height="48"><div><strong>En Sus Manos</strong><span>Más educación, mejor cuidado</span></div></header>
+    <h1>Registro de cuidados después de cada ciclo</h1>
+    <p class="intro">Imprima esta hoja y complétela a mano para comunicar al equipo de salud lo que ha observado. Anote la información tal como ocurrió. Este registro no diagnostica, no calcula dosis ni sustituye la consulta.</p>
+    <p class="record-alert">Si el niño presenta fiebre o señales de alarma, no espere a completar el registro. Busque atención según la ruta indicada por su equipo tratante.</p>
+    <dl class="fields">
+      <div class="record-pair">
+        <div class="field"><dt>Ciclo de quimioterapia</dt><dd aria-label="Espacio para completar a mano"><span class="write-line"></span></dd></div>
+        <div class="field"><dt>Fecha de administración</dt><dd aria-label="Espacio para completar a mano"><span class="write-line"></span></dd></div>
+      </div>
+      <div class="field"><dt>Temperatura <span class="record-label">· Valor, fecha, hora y método de medición indicado</span></dt><dd class="record-lines" aria-label="Dos líneas para completar a mano"><span class="write-line"></span><span class="write-line"></span></dd></div>
+      <div class="field"><dt>Síntomas <span class="record-label">· Cuáles, cuándo comenzaron, duración y evolución</span></dt><dd class="record-lines" aria-label="Tres líneas para completar a mano"><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></dd></div>
+      <div class="field"><dt>Alimentación e hidratación <span class="record-label">· Qué toleró y dificultades observadas</span></dt><dd class="record-lines" aria-label="Dos líneas para completar a mano"><span class="write-line"></span><span class="write-line"></span></dd></div>
+      <div class="field"><dt>Medicamentos ya prescritos <span class="record-label">· Dosis omitidas o dificultades; no modifique el esquema</span></dt><dd class="record-lines" aria-label="Dos líneas para completar a mano"><span class="write-line"></span><span class="write-line"></span></dd></div>
+      <div class="field"><dt>Observaciones y preguntas para el equipo</dt><dd class="record-lines" aria-label="Dos líneas para completar a mano"><span class="write-line"></span><span class="write-line"></span></dd></div>
+    </dl>
+    <footer>Esta página no recibe ni guarda información personal. Los espacios se completan en papel. Esta herramienta no reemplaza al equipo de salud.</footer>
+  </main>
+</body>
+</html>

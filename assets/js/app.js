@@ -7,6 +7,8 @@
   const glossaryEntries = [...content.glossary].sort((a, b) => a.term.localeCompare(b.term, "es"));
   const app = document.getElementById("app");
   let deferredInstallPrompt = null;
+  let reflectionStep = 0;
+  let renderedPath = "";
 
   const escapeHtml = (value) => String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -140,7 +142,6 @@
             <a class="button primary" href="#/antes">Comenzar ${icon("chevron", 20)}</a>
             <a class="button ghost" href="#/inicio">Explorar módulos</a>
           </div>
-          <p class="prototype-label">Prototipo académico · contenido pendiente de validación por expertos</p>
         </div>
         <figure class="welcome-art">
           <img src="assets/images/bienvenida.webp" alt="Una cuidadora abraza con serenidad a un niño con pañuelo azul." width="900" height="600">
@@ -178,9 +179,9 @@
     const visited = state.visitedModules.includes(module.id);
     const status = done ? "Completado" : visited ? "En curso" : "Sin iniciar";
     return `<a class="module-card tone-${module.tone}" href="#/modulo/${module.id}">
-      <span class="module-number">${String(module.id).padStart(2, "0")}</span>
+      <span class="module-number">${String(content.modules.indexOf(module) + 1).padStart(2, "0")}</span>
       <span class="module-icon">${icon(module.icon, 30)}</span>
-      <span class="module-text"><strong>${escapeHtml(module.id === 8 ? "Signos de alarma" : module.title)}</strong><small>${escapeHtml(module.summary)}</small></span>
+      <span class="module-text"><strong>${escapeHtml(module.shortTitle || module.title)}</strong><small>${escapeHtml(module.summary)}</small></span>
       <span class="module-status ${done ? "done" : ""}">${done ? icon("check", 14) : ""}${status}</span>
       <span class="module-chevron">${icon("chevron")}</span>
     </a>`;
@@ -205,7 +206,7 @@
         <div class="section-heading"><h2>${modulesOnly ? "Elija un módulo" : "Módulos educativos"}</h2>${!modulesOnly ? '<a href="#/modulos">Ver todos</a>' : ""}</div>
         <div class="module-grid">${content.modules.map((module) => moduleCard(module, state)).join("")}</div>
       </section>
-      ${complete === total ? `<a class="completion-banner" href="#/completado">${icon("check", 26)}<span><strong>¡Recorrido completado!</strong><small>Revise sus próximos pasos y la encuesta de usabilidad.</small></span>${icon("chevron")}</a>` : ""}
+      ${complete === total ? `<a class="completion-banner" href="#/completado">${icon("check", 26)}<span><strong>¡Recorrido completado!</strong><small>Repase los módulos, las alarmas y los recursos de cuidado.</small></span>${icon("chevron")}</a>` : ""}
       ${safetyNote(true)}
     `);
   }
@@ -216,18 +217,50 @@
     return `<div class="related-links no-print">${safeItems.map((item) => `<a class="button secondary" href="${escapeHtml(item.url)}" ${item.url.startsWith("recursos/") ? 'target="_blank" rel="noopener"' : ""}>${icon(item.url.startsWith("recursos/") ? "print" : "book", 18)} ${escapeHtml(item.label)}</a>`).join("")}</div>`;
   }
 
+  function reflectionContent(block) {
+    const last = reflectionStep === block.questions.length - 1;
+    return `<p class="reflection-status" role="status" aria-live="polite">${reflectionStep + 1} de ${block.questions.length}</p>
+      <p class="reflection-question" tabindex="-1">${escapeHtml(block.questions[reflectionStep])}</p>
+      <div class="reflection-controls">
+        <button class="button secondary" type="button" data-action="reflection-previous" ${reflectionStep === 0 ? "disabled" : ""}>Anterior</button>
+        ${last ? '<button class="button primary" type="button" data-action="reflection-restart">Volver a comenzar</button>' : '<button class="button primary" type="button" data-action="reflection-next">Siguiente</button>'}
+      </div>
+      ${last ? `<p class="reflection-closing">${escapeHtml(block.closing)}</p><p>Puede solicitar orientación al equipo de salud cuando necesite apoyo.</p>` : ""}`;
+  }
+
+  function renderBlocks(blocks = []) {
+    return blocks.map((block) => {
+      if (block.type === "paragraph") return `<p>${escapeHtml(block.text)}</p>`;
+      if (block.type === "heading") return `<h4>${escapeHtml(block.text)}</h4>`;
+      if (block.type === "list") return list(block.items, "plain-list educational-list");
+      if (block.type === "table") return `<div class="table-scroll" role="region" aria-label="${escapeHtml(block.caption)}" tabindex="0"><table class="educational-table"><caption class="sr-only">${escapeHtml(block.caption)}</caption><thead><tr>${block.rows[0].map((cell) => `<th scope="col">${escapeHtml(cell)}</th>`).join("")}</tr></thead><tbody>${block.rows.slice(1).map((row) => `<tr>${row.map((cell, i) => i === 0 ? `<th scope="row">${escapeHtml(cell)}</th>` : `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      if (block.type === "reflection") return `<section class="reflection-card" aria-labelledby="reflection-title"><h4 id="reflection-title">${escapeHtml(block.title)}</h4><p>${escapeHtml(block.intro)}</p><p>${escapeHtml(block.lead)}</p><div id="reflection-interactive" class="no-print">${reflectionContent(block)}</div><div class="print-only"><ol>${block.questions.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ol><p>${escapeHtml(block.closing)}</p></div></section>`;
+      return "";
+    }).join("");
+  }
+
   function renderSection(section, index) {
-    return `<details class="content-accordion" ${index === 0 ? "open" : ""}>
-      <summary><span>${index + 1}</span><strong>${escapeHtml(section.title)}</strong>${icon("chevron", 20)}</summary>
-      <div class="accordion-body">
+    const sectionId = section.id || `lesson-section-${index + 1}`;
+    const body = `<div class="accordion-body">
         ${section.text ? `<p>${escapeHtml(section.text)}</p>` : ""}
         ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
         ${section.bullets ? list(section.bullets, "plain-list") : ""}
+        ${renderBlocks(section.blocks)}
         ${section.note ? `<aside class="inline-note">${icon("info", 19)}<span>${escapeHtml(section.note)}</span></aside>` : ""}
         ${section.image ? `<figure class="section-illustration"><img src="${escapeHtml(section.image)}" alt="${escapeHtml(section.imageAlt)}" width="1536" height="1024" loading="lazy" decoding="async"></figure>` : ""}
         ${resourceLinks(section.links)}
-      </div>
+      </div>`;
+    if (section.alwaysVisible) return `<section id="${escapeHtml(sectionId)}" class="content-card always-visible-section" aria-labelledby="${escapeHtml(sectionId)}-title"><h3 id="${escapeHtml(sectionId)}-title" tabindex="-1">${escapeHtml(section.title)}</h3>${body}</section>`;
+    return `<details id="${escapeHtml(sectionId)}" class="content-accordion" ${index === 0 ? "open" : ""}>
+      <summary><span>${index + 1}</span><h3>${escapeHtml(section.title)}</h3>${icon("chevron", 20)}</summary>
+      ${body}
     </details>`;
+  }
+
+  function moduleSources(sources = []) {
+    const safeSources = sources.filter((source) => safeExternalUrl(source.url));
+    if (!safeSources.length) return "";
+    return `<section class="content-card module-sources"><h2>Fuentes para ampliar la información</h2><p>Las recomendaciones para cada niño deben acordarse con su equipo tratante. Estos enlaces abren sitios externos y requieren conexión.</p><ol>${safeSources.map((source) => `<li value="${source.number}"><p>${escapeHtml(source.citation)} <a href="${escapeHtml(safeExternalUrl(source.url))}" target="_blank" rel="noopener noreferrer">Consultar fuente: ${escapeHtml(source.label)} ${icon("external", 16)}</a></p></li>`).join("")}</ol></section>`;
   }
 
   function renderModule(route, id) {
@@ -245,18 +278,21 @@
         <a class="back-link no-print" href="#/modulos">${icon("back", 18)} Todos los módulos</a>
         <header class="module-hero ${lesson.imageFit === "contain" ? "image-complete" : ""} ${lesson.image ? "" : "without-image"}">
           <div class="module-hero-copy">
-            <span class="module-kicker">Módulo ${lesson.id} de ${content.modules.length}</span>
+            <span class="module-kicker">Módulo ${position + 1} de ${content.modules.length}</span>
             <div class="module-title-row"><span class="module-icon large">${icon(lesson.icon, 38)}</span><h1>${escapeHtml(lesson.title)}</h1></div>
             <p>${escapeHtml(lesson.objective)}</p>
           </div>
           ${lesson.image ? `<img src="${escapeHtml(lesson.image)}" alt="${escapeHtml(lesson.imageAlt)}" width="${lesson.imageWidth || 900}" height="${lesson.imageHeight || 600}">` : ""}
         </header>
+        ${lesson.urgentMessage ? `<aside class="emergency-callout"><span>${icon("alert", 30)}</span><div><strong>Las señales de alarma requieren atención inmediata</strong><p>${escapeHtml(lesson.urgentMessage)}</p><a class="button secondary no-print" href="#/alarmas">Abrir semáforo de alarmas ${icon("chevron", 19)}</a></div></aside>` : ""}
+        ${lesson.introduction?.length ? `<section class="module-introduction" aria-label="Introducción">${renderBlocks(lesson.introduction)}</section>` : ""}
         <section class="content-card key-card">
           <h2>Ideas clave</h2>
           ${list(lesson.keyMessages, "key-list")}
         </section>
         <section class="accordion-list">
           <h2>Aprenda paso a paso</h2>
+          ${lesson.jumpLinks ? `<nav class="section-jumps no-print" aria-label="Ir a un apartado del módulo">${lesson.jumpLinks.map((link) => `<button class="button secondary" type="button" data-action="open-section" data-section-id="${escapeHtml(link.sectionId)}">${escapeHtml(link.label)}</button>`).join("")}<button class="button ghost" type="button" data-action="read-all">Leer todo el módulo</button></nav>` : ""}
           ${lesson.sections.map((section, index) => renderSection(section, index)).join("")}
         </section>
         <section class="action-grid">
@@ -267,7 +303,7 @@
           <h2>Cuándo consultar</h2>
           ${list(lesson.consult, "plain-list")}
           ${lesson.consultNote ? `<p class="transplant-note">${escapeHtml(lesson.consultNote)}</p>` : ""}
-          ${lesson.id === 8 || lesson.id === 6 || lesson.id === 11 ? `<a class="button danger" href="#/alarmas">Abrir semáforo de alarmas ${icon("chevron", 19)}</a>` : ""}
+          ${[8, 6, 11, 12].includes(lesson.id) ? `<a class="button danger" href="#/alarmas">Abrir semáforo de alarmas ${icon("chevron", 19)}</a>` : ""}
         </section>
         <section class="content-card checklist-card">
           <div class="section-heading"><h2>Lista rápida</h2><span>Se guarda en este equipo</span></div>
@@ -276,6 +312,7 @@
             return `<label><input type="checkbox" data-checklist-module="${lesson.id}" data-checklist-item="${itemId}" ${checkedItems.has(itemId) ? "checked" : ""}><span>${escapeHtml(item)}</span></label>`;
           }).join("")}</div>
         </section>
+        ${moduleSources(lesson.sources)}
         <div class="module-complete no-print">
           <button class="button ${isComplete ? "secondary" : "primary"} full" type="button" data-action="toggle-complete" data-module-id="${lesson.id}" data-complete="${isComplete}">
             ${icon(isComplete ? "check" : "book", 20)} ${isComplete ? "Módulo marcado como completado" : "Marcar módulo como completado"}
@@ -371,7 +408,7 @@
       <section class="page-heading">
         <p class="eyebrow">Para consultar y compartir</p>
         <h1>Recursos útiles</h1>
-        <p class="lead">Glosario, preguntas frecuentes, fuentes y evaluación de usabilidad.</p>
+        <p class="lead">Glosario, preguntas frecuentes, hojas para imprimir y fuentes de información.</p>
       </section>
       <section class="resource-section" id="glosario">
         <div class="section-heading"><div><p class="eyebrow">Palabras médicas</p><h2>Glosario</h2></div><span>${content.glossary.length} términos</span></div>
@@ -384,22 +421,16 @@
       </section>
       <section class="resource-section">
         <div class="section-heading"><div><p class="eyebrow">Para imprimir</p><h2>Planificadores de cuidado</h2></div></div>
-        <p class="section-intro">Cinco hojas en blanco para completar a mano junto con el equipo: contactos, medicamentos, citas, cuidados después del trasplante y planificación si vive lejos.</p>
-        <a class="button secondary" href="recursos/planificadores-imprimibles.html" target="_blank" rel="noopener">${icon("print", 18)} Abrir los tres planificadores generales</a>
+        <p class="section-intro">${content.generalPrintables.length + content.carePlans.length} hojas en blanco para completar a mano: contactos, medicamentos, citas, cuidados después del trasplante, planificación si vive lejos y registro de cuidados después de la quimioterapia.</p>
+        <a class="button secondary" href="recursos/planificadores-imprimibles.html" target="_blank" rel="noopener">${icon("print", 18)} Abrir los ${content.generalPrintables.length} planificadores generales</a>
         <div class="plan-grid">${content.carePlans.map((plan) => `<article class="content-card"><h3>${escapeHtml(plan.title)}</h3><p>${escapeHtml(plan.description)}</p>${resourceLinks([{label: "Abrir hoja para imprimir", url: plan.url}])}</article>`).join("")}</div>
       </section>
       <section class="resource-section">
         <div class="section-heading"><div><p class="eyebrow">Para ampliar</p><h2>Fuentes consultadas</h2></div></div>
-        <p class="section-intro">Enlaces externos incluidos en los documentos del proyecto. Verifique con el equipo tratante qué información aplica al caso particular.</p>
+        <p class="section-intro">Información para ampliar lo aprendido. Consulte con su equipo tratante qué recomendaciones se aplican a su hijo. Los enlaces abren otros sitios y requieren conexión.</p>
         <div class="source-list">${content.resources.map((resource) => `<a href="${escapeHtml(resource.url)}" target="_blank" rel="noopener noreferrer"><span><small>${escapeHtml(resource.kind)}</small><strong>${escapeHtml(resource.label)}</strong></span>${icon("external", 19)}</a>`).join("")}</div>
       </section>
-      <section class="resource-section sus-card">
-        <p class="eyebrow">Evaluación del prototipo</p>
-        <h2>Escala de Usabilidad del Sistema (SUS)</h2>
-        <p>La encuesta SUS tiene 10 afirmaciones y permite evaluar la facilidad de uso. No está incluida dentro de esta aplicación para evitar recopilar datos personales en GitHub Pages.</p>
-        ${susUrl ? `<a class="button primary" href="${escapeHtml(susUrl)}" target="_blank" rel="noopener noreferrer">Abrir encuesta SUS ${icon("external", 18)}</a>` : `<button class="button secondary" type="button" disabled>Encuesta pendiente de configuración</button><p>La evaluación de usabilidad estará disponible cuando se configure el formulario.</p>`}
-        <details class="sus-reference"><summary>Ver los 10 ítems de referencia ${icon("chevron", 18)}</summary><ol>${content.sus.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol><p>${escapeHtml(content.sus.scoring)}</p></details>
-      </section>
+      ${susUrl ? `<section class="resource-section sus-card"><h2>Comparta su experiencia</h2><p>Puede responder una encuesta sobre la facilidad de uso. Se abrirá un formulario externo.</p><a class="button primary" href="${escapeHtml(susUrl)}" target="_blank" rel="noopener noreferrer">Abrir encuesta de usabilidad ${icon("external", 18)}</a></section>` : ""}
       ${safetyNote(true)}
     `);
   }
@@ -441,8 +472,8 @@
       </section>
       <section class="content-card privacy-card">
         <h2>${icon("lock", 22)} Privacidad por diseño</h2>
-        <p>La aplicación no tiene cuentas, analítica, formularios propios ni base de datos. No escriba nombres, documentos, diagnósticos u otra información personal en copias modificadas del proyecto sin implementar controles de seguridad y privacidad.</p>
-        <dl><div><dt>Versión</dt><dd>${escapeHtml(config.version)}</dd></div><div><dt>Revisión del contenido</dt><dd>${escapeHtml(config.lastContentReview)}</dd></div><div><dt>Conexión</dt><dd id="network-status">${navigator.onLine ? "En línea" : "Sin conexión"}</dd></div></dl>
+        <p>No se solicitan nombres ni información clínica. El progreso de lectura, las listas y las preferencias se guardan solo en este navegador. Puede borrarlos desde esta pantalla.</p><p>Los enlaces externos abren otros sitios, que tienen sus propias condiciones de privacidad.</p>
+        <dl><div><dt>Versión</dt><dd>${escapeHtml(config.version)}</dd></div><div><dt>Actualización editorial</dt><dd>${escapeHtml(config.lastContentReview)}</dd></div><div><dt>Conexión</dt><dd id="network-status">${navigator.onLine ? "En línea" : "Sin conexión"}</dd></div></dl>
       </section>
       ${safetyNote()}
     `);
@@ -459,6 +490,8 @@
   }
 
   function render(route) {
+    if (route.path !== renderedPath) reflectionStep = 0;
+    renderedPath = route.path;
     let markup;
     if (route.path === "/bienvenida" || route.path === "/") markup = renderWelcome(route);
     else if (route.path === "/antes") markup = renderBefore(route);
@@ -530,6 +563,29 @@
     const target = event.target.closest("[data-action]");
     if (!target) return;
     const action = target.dataset.action;
+    if (action === "open-section") {
+      const section = document.getElementById(target.dataset.sectionId);
+      if (section) {
+        if (section.tagName === "DETAILS") section.open = true;
+        section.scrollIntoView({ block: "start" });
+        section.querySelector("summary, h3")?.focus({ preventScroll: true });
+      }
+    }
+    if (action === "read-all") {
+      document.querySelectorAll(".module-page details").forEach((details) => { details.open = true; });
+      showToast("Todos los apartados están abiertos para leer.");
+    }
+    if (action.startsWith("reflection-")) {
+      const panel = document.getElementById("reflection-interactive");
+      const block = content.modules.find((module) => module.id === 9)?.sections.flatMap((section) => section.blocks || []).find((item) => item.type === "reflection");
+      if (panel && block) {
+        if (action === "reflection-next") reflectionStep = Math.min(reflectionStep + 1, block.questions.length - 1);
+        if (action === "reflection-previous") reflectionStep = Math.max(reflectionStep - 1, 0);
+        if (action === "reflection-restart") reflectionStep = 0;
+        panel.innerHTML = reflectionContent(block);
+        panel.querySelector(".reflection-question")?.focus();
+      }
+    }
     if (action === "go-search") window.AppRouter.navigate("#/buscar");
     if (action === "quick-search") window.AppRouter.navigate(`#/buscar?q=${encodeURIComponent(target.dataset.term)}`);
     if (action === "accept-onboarding") {

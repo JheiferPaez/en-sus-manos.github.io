@@ -1,4 +1,4 @@
-const CACHE_NAME = "en-sus-manos-v1.1.0";
+const CACHE_NAME = "en-sus-manos-v1.2.0";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -27,6 +27,7 @@ const APP_SHELL = [
   "./recursos/plan-cuidados-trasplante.html",
   "./recursos/plan-si-vivo-lejos.html",
   "./recursos/planes.css",
+  "./recursos/registro-cuidados-quimioterapia.html",
   "./assets/js/print.js",
   "./404.html"
 ];
